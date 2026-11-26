@@ -43,15 +43,15 @@ export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({
   };
 
   const navigationItems = [
-    { id: 'manifest', label: 'Daily Kitchen Manifest', icon: Utensils, badge: '9:00 AM Lock' },
-    { id: 'subscribers', label: 'Active Subscribers & Mandates', icon: Users, badge: '112 Active' },
-    { id: 'calendar', label: 'WFH Pause & Day Credits', icon: Calendar, badge: '8:30 AM Cut' },
-    { id: 'routes', label: 'Route Clustering & Riders', icon: Truck, badge: '4 Corridors' },
-    { id: 'menu', label: '4-Week Rotating Food Menu', icon: Sparkles, badge: 'Week 1 Live' },
-    { id: 'dabba', label: 'Dabba Return & Deposits', icon: RotateCcw, badge: '97% Return' },
-    { id: 'corporate', label: 'Corporate Tech Contracts', icon: Building2, badge: '4 Tech Hubs' },
-    { id: 'feedback', label: 'WhatsApp Ratings & Churn Desk', icon: MessageSquare, badge: '4.85 ★' },
-    { id: 'inventory', label: 'Raw Pantry & Bagasse Trays', icon: Package, badge: 'Begum Bazar' },
+    { id: 'manifest', label: 'Daily Manifest', icon: Utensils, badge: '9:00 AM Lock' },
+    { id: 'subscribers', label: 'Subscribers', icon: Users, badge: '112 Active' },
+    { id: 'calendar', label: 'Pause & Credits', icon: Calendar, badge: '8:30 AM Cut' },
+    { id: 'routes', label: 'Delivery Routes', icon: Truck, badge: '4 Corridors' },
+    { id: 'menu', label: 'Monthly Menu', icon: Sparkles, badge: 'Week 1 Live' },
+    { id: 'dabba', label: 'Dabba Returns', icon: RotateCcw, badge: '97% Return' },
+    { id: 'corporate', label: 'Corporate Accounts', icon: Building2, badge: '4 Tech Hubs' },
+    { id: 'feedback', label: 'Customer Ratings', icon: MessageSquare, badge: '4.85 ★' },
+    { id: 'inventory', label: 'Pantry & Trays', icon: Package, badge: 'Begum Bazar' },
   ];
 
   const currentNav = navigationItems.find(n => n.id === activeSubPage) || navigationItems[0];

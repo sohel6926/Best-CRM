@@ -42,15 +42,15 @@ export const PickleFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = (
   };
 
   const navigationItems = [
-    { id: 'curing', label: 'Curing & Aging Jaadis', icon: Layers, badge: '4 Bharanis' },
-    { id: 'inventory', label: 'Bottled SKU Inventory', icon: Package, badge: '8 SKUs' },
-    { id: 'orders', label: 'D2C Customer Orders', icon: ShoppingCart, badge: 'Live Orders' },
-    { id: 'wholesale', label: 'B2B Supermarket Khata', icon: Store, badge: '4 Chains' },
-    { id: 'procurement', label: 'Raw Harvest & Oils', icon: ShoppingBag, badge: 'Nuzvid/Tenali' },
-    { id: 'non-veg', label: 'Non-Veg Meat Kitchen', icon: Flame, badge: 'HACCP Safe' },
-    { id: 'shipping', label: 'Fragile Glass Shipping', icon: Truck, badge: 'Delhivery' },
-    { id: 'export', label: 'NRI Baggage Export Desk', icon: Plane, badge: 'USA/UK/UAE' },
-    { id: 'analytics', label: 'Flavor Margins & Analytics', icon: BarChart3, badge: '58% Margin' },
+    { id: 'curing', label: 'Jaadi Curing', icon: Layers, badge: '4 Bharanis' },
+    { id: 'inventory', label: 'Bottled Stock', icon: Package, badge: '8 SKUs' },
+    { id: 'orders', label: 'Customer Orders', icon: ShoppingCart, badge: 'Live Orders' },
+    { id: 'wholesale', label: 'Supermarket Khata', icon: Store, badge: '4 Chains' },
+    { id: 'procurement', label: 'Raw Oils & Mangoes', icon: ShoppingBag, badge: 'Nuzvid/Tenali' },
+    { id: 'non-veg', label: 'Non-Veg Kitchen', icon: Flame, badge: 'HACCP Safe' },
+    { id: 'shipping', label: 'Glass Shipping', icon: Truck, badge: 'Delhivery' },
+    { id: 'export', label: 'Export Orders', icon: Plane, badge: 'USA/UK/UAE' },
+    { id: 'analytics', label: 'Flavor Margins', icon: BarChart3, badge: '58% Margin' },
   ];
 
   const currentNav = navigationItems.find(n => n.id === activeSubPage) || navigationItems[0];

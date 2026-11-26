@@ -42,15 +42,15 @@ export const KaramFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({
   };
 
   const navigationItems = [
-    { id: 'batches', label: 'Roasting & Grinding Batches', icon: Flame, badge: '4 Batches' },
-    { id: 'inventory', label: 'Packaged Stock & Barcodes', icon: Package, badge: '8 SKUs' },
-    { id: 'orders', label: 'D2C Online & WhatsApp Orders', icon: ShoppingCart, badge: 'Live Orders' },
-    { id: 'wholesale', label: 'B2B Supermarket Khata', icon: Store, badge: '4 Chains' },
-    { id: 'procurement', label: 'Raw Mandi Spice Sourcing', icon: ShoppingBag, badge: 'Guntur/Byadgi' },
-    { id: 'tiffin-supply', label: 'HORECA Tiffin Contracts', icon: Coffee, badge: 'Weekly 125kg' },
-    { id: 'shipping', label: 'Courier Shipping & AWB Labels', icon: Truck, badge: 'Delhivery' },
-    { id: 'export', label: 'NRI Global Export Desk', icon: Plane, badge: 'USA/UK/UAE' },
-    { id: 'analytics', label: 'Flavor Margins & Analytics', icon: BarChart3, badge: '56% Margin' },
+    { id: 'batches', label: 'Grinding Batches', icon: Flame, badge: '4 Batches' },
+    { id: 'inventory', label: 'Packaged Stock', icon: Package, badge: '8 SKUs' },
+    { id: 'orders', label: 'Customer Orders', icon: ShoppingCart, badge: 'Live Orders' },
+    { id: 'wholesale', label: 'Supermarket Khata', icon: Store, badge: '4 Chains' },
+    { id: 'procurement', label: 'Spice Procurement', icon: ShoppingBag, badge: 'Guntur/Byadgi' },
+    { id: 'tiffin-supply', label: 'Hotel Contracts', icon: Coffee, badge: 'Weekly 125kg' },
+    { id: 'shipping', label: 'Courier & AWB', icon: Truck, badge: 'Delhivery' },
+    { id: 'export', label: 'Export Orders', icon: Plane, badge: 'USA/UK/UAE' },
+    { id: 'analytics', label: 'Flavor Margins', icon: BarChart3, badge: '56% Margin' },
   ];
 
   const currentNav = navigationItems.find(n => n.id === activeSubPage) || navigationItems[0];
