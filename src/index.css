@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-950: #1E1B4B;
+  --color-brand-900: #4C1D95;
+  --color-brand-800: #5B21B6;
+  --color-brand-600: #7C3AED;
+  --color-brand-500: #8B5CF6;
+  --color-brand-100: #EDE9FE;
+  --color-brand-50: #F3EEFF;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    color: #475569;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: #1E1B4B;
+  }
+
+  :focus-visible {
+    outline: 2px solid #7C3AED;
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-entrance {
+  animation: heroFadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-entrance-delayed {
+  animation: heroFadeUp 580ms cubic-bezier(0.16, 1, 0.3, 1) 90ms both;
+}
+
+.card-surface {
+  background-color: #ffffff;
+  border: 1px solid #E9D5FF;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px -12px rgba(76, 29, 149, 0.08);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
