@@ -30,6 +30,7 @@ import { CrmIcon } from '../../components/CrmIcon';
 import { CateringFullSuite } from './catering/CateringFullSuite';
 import { HostelFullSuite } from './hostel/HostelFullSuite';
 import { HotelFullSuite } from './hotel/HotelFullSuite';
+import { KaramFullSuite } from './karam-podi/KaramFullSuite';
 
 export function CrmWorkspacePage() {
   const { crmId } = useParams<{ crmId: string }>();
@@ -157,7 +158,7 @@ export function CrmWorkspacePage() {
         )}
 
         {selectedCrmId === 'karam-podi-crm' && (
-          <KaramPodiSpecificWorkspace onNotify={showNotification} />
+          <KaramFullSuite onNotify={showNotification} />
         )}
 
         {selectedCrmId === 'pickles-sales-crm' && (
