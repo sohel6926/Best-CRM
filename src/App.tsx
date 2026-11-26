@@ -39,8 +39,6 @@ function AppContent() {
       <Routes>
         <Route path="/admin/*" element={<AdminLayout />} />
         <Route path="/admin" element={<AdminLayout />} />
-        <Route path="/app/hostel-crm/*" element={<HostelLayout />} />
-        <Route path="/app/hostel-crm" element={<HostelLayout />} />
         <Route path="/app/:crmId" element={<CrmWorkspacePage />} />
         <Route path="/app" element={<CrmWorkspacePage />} />
       </Routes>

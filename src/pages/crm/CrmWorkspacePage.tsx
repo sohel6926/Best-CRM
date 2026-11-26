@@ -28,7 +28,8 @@ import {
 import { CRM_PRODUCTS } from '../../data/content';
 import { CrmIcon } from '../../components/CrmIcon';
 import { CateringFullSuite } from './catering/CateringFullSuite';
-import { HostelLayout } from './hostel/HostelLayout';
+import { HostelFullSuite } from './hostel/HostelFullSuite';
+import { HotelFullSuite } from './hotel/HotelFullSuite';
 
 export function CrmWorkspacePage() {
   const { crmId } = useParams<{ crmId: string }>();
@@ -148,11 +149,11 @@ export function CrmWorkspacePage() {
         )}
 
         {selectedCrmId === 'hostel-crm' && (
-          <HostelLayout />
+          <HostelFullSuite onNotify={showNotification} />
         )}
 
         {selectedCrmId === 'hotel-crm' && (
-          <HotelSpecificWorkspace onNotify={showNotification} />
+          <HotelFullSuite onNotify={showNotification} />
         )}
 
         {selectedCrmId === 'karam-podi-crm' && (
