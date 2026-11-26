@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { 
   Flame, Package, ShoppingCart, Store, ShoppingBag, 
   Coffee, Truck, Plane, BarChart3, ChevronRight, Printer
@@ -25,7 +26,17 @@ export type KaramSubPage =
   | 'analytics';
 
 export const KaramFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({ onNotify }) => {
-  const [activeSubPage, setActiveSubPage] = useState<KaramSubPage>('batches');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const validTabs: KaramSubPage[] = [
+    'batches', 'inventory', 'orders', 'wholesale', 'procurement', 
+    'tiffin-supply', 'shipping', 'export', 'analytics'
+  ];
+  const tabFromUrl = searchParams.get('tab') as KaramSubPage;
+  const activeSubPage: KaramSubPage = validTabs.includes(tabFromUrl) ? tabFromUrl : 'batches';
+
+  const setActiveSubPage = (tab: KaramSubPage) => {
+    setSearchParams({ tab });
+  };
 
   const navigationItems = [
     { id: 'batches', label: 'Roasting & Grinding Batches', icon: Flame, badge: '4 Batches' },

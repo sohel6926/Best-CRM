@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { 
   Utensils, Users, Calendar, Truck, Sparkles, 
   RotateCcw, Building2, MessageSquare, Package, 
@@ -26,7 +27,17 @@ export type LunchSubPage =
   | 'inventory';
 
 export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({ onNotify }) => {
-  const [activeSubPage, setActiveSubPage] = useState<LunchSubPage>('manifest');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const validTabs: LunchSubPage[] = [
+    'manifest', 'subscribers', 'calendar', 'routes', 'menu', 
+    'dabba', 'corporate', 'feedback', 'inventory'
+  ];
+  const tabFromUrl = searchParams.get('tab') as LunchSubPage;
+  const activeSubPage: LunchSubPage = validTabs.includes(tabFromUrl) ? tabFromUrl : 'manifest';
+
+  const setActiveSubPage = (tab: LunchSubPage) => {
+    setSearchParams({ tab });
+  };
 
   const navigationItems = [
     { id: 'manifest', label: 'Daily Kitchen Manifest', icon: Utensils, badge: '9:00 AM Lock' },

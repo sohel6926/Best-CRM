@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import {
   ArrowLeft,
   CheckCircle2,
@@ -17,7 +17,13 @@ import { LunchFullSuite } from './lunch-box/LunchFullSuite';
 
 export function CrmWorkspacePage() {
   const { crmId } = useParams<{ crmId: string }>();
-  const [selectedCrmId, setSelectedCrmId] = useState<string>(crmId || 'catering-crm');
+
+  // If user visits /app without a crmId, redirect to default catering-crm
+  if (!crmId) {
+    return <Navigate to="/app/catering-crm" replace />;
+  }
+
+  const selectedCrmId = crmId;
   const currentCrm = CRM_PRODUCTS.find((c) => c.id === selectedCrmId) || CRM_PRODUCTS[0];
 
   const [statusNotification, setStatusNotification] = useState<string | null>(null);
@@ -43,13 +49,12 @@ export function CrmWorkspacePage() {
 
             <span className="h-4 w-px bg-gray-300" />
 
-            {/* Quick CRM Switcher */}
+            {/* Quick CRM Switcher with Real URL Navigation */}
             <div className="flex items-center gap-1.5 overflow-x-auto">
               {CRM_PRODUCTS.map((crm) => (
-                <button
+                <Link
                   key={crm.id}
-                  type="button"
-                  onClick={() => setSelectedCrmId(crm.id)}
+                  to={`/app/${crm.id}`}
                   className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold whitespace-nowrap transition cursor-pointer ${
                     selectedCrmId === crm.id
                       ? 'bg-[#5B21B6] text-white shadow-xs'
@@ -58,7 +63,7 @@ export function CrmWorkspacePage() {
                 >
                   <CrmIcon name={crm.icon} className="h-3.5 w-3.5" />
                   <span>{crm.name}</span>
-                </button>
+                </Link>
               ))}
             </div>
           </div>

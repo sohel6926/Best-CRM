@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { 
   Layers, Package, ShoppingCart, Store, ShoppingBag, 
   Flame, Truck, Plane, BarChart3, ChevronRight, Printer
@@ -25,7 +26,17 @@ export type PickleSubPage =
   | 'analytics';
 
 export const PickleFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({ onNotify }) => {
-  const [activeSubPage, setActiveSubPage] = useState<PickleSubPage>('curing');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const validTabs: PickleSubPage[] = [
+    'curing', 'inventory', 'orders', 'wholesale', 'procurement', 
+    'non-veg', 'shipping', 'export', 'analytics'
+  ];
+  const tabFromUrl = searchParams.get('tab') as PickleSubPage;
+  const activeSubPage: PickleSubPage = validTabs.includes(tabFromUrl) ? tabFromUrl : 'curing';
+
+  const setActiveSubPage = (tab: PickleSubPage) => {
+    setSearchParams({ tab });
+  };
 
   const navigationItems = [
     { id: 'curing', label: 'Curing & Aging Jaadis', icon: Layers, badge: '4 Bharanis' },

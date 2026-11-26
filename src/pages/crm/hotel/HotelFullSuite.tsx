@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { 
   Building2, UserCheck, Utensils, Sparkles, FileText, 
   Globe, Landmark, Car, Moon, Package, ChevronRight, Printer
@@ -27,7 +28,17 @@ export type HotelSubPage =
   | 'inventory';
 
 export const HotelFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({ onNotify }) => {
-  const [activeSubPage, setActiveSubPage] = useState<HotelSubPage>('tape-chart');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const validTabs: HotelSubPage[] = [
+    'tape-chart', 'check-in', 'dining-pos', 'housekeeping', 'folio-billing', 
+    'channel-manager', 'banquets', 'concierge', 'night-audit', 'inventory'
+  ];
+  const tabFromUrl = searchParams.get('tab') as HotelSubPage;
+  const activeSubPage: HotelSubPage = validTabs.includes(tabFromUrl) ? tabFromUrl : 'tape-chart';
+
+  const setActiveSubPage = (tab: HotelSubPage) => {
+    setSearchParams({ tab });
+  };
 
   const navigationItems = [
     { id: 'tape-chart', label: 'Room Tape Chart', icon: Building2, badge: '85% Full' },

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { 
   Calendar, Utensils, ShoppingBag, Calculator, Users, 
   Truck, FileText, Sparkles, Building2, ChevronRight, Download, Share2,
@@ -26,7 +27,16 @@ export type CateringSubPage =
   | 'vendors';
 
 export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({ onNotify }) => {
-  const [activeSubPage, setActiveSubPage] = useState<CateringSubPage>('events');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const validTabs: CateringSubPage[] = [
+    'events', 'menus', 'grocery', 'costing', 'staff', 'vessels', 'invoices', 'tasting', 'vendors'
+  ];
+  const tabFromUrl = searchParams.get('tab') as CateringSubPage;
+  const activeSubPage: CateringSubPage = validTabs.includes(tabFromUrl) ? tabFromUrl : 'events';
+
+  const setActiveSubPage = (tab: CateringSubPage) => {
+    setSearchParams({ tab });
+  };
 
   const navigationItems = [
     { id: 'events', label: 'Functions & Diary', icon: Calendar, badge: '5 Booked' },

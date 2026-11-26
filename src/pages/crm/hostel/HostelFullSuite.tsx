@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { 
   BedDouble, Users, CreditCard, Zap, Utensils, 
   ShieldAlert, ShieldCheck, Wrench, UserCog, ChevronRight, Printer
@@ -25,7 +26,16 @@ export type HostelSubPage =
   | 'staff';
 
 export const HostelFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({ onNotify }) => {
-  const [activeSubPage, setActiveSubPage] = useState<HostelSubPage>('rooms');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const validTabs: HostelSubPage[] = [
+    'rooms', 'residents', 'billing', 'power', 'mess', 'gate-pass', 'deposits', 'complaints', 'staff'
+  ];
+  const tabFromUrl = searchParams.get('tab') as HostelSubPage;
+  const activeSubPage: HostelSubPage = validTabs.includes(tabFromUrl) ? tabFromUrl : 'rooms';
+
+  const setActiveSubPage = (tab: HostelSubPage) => {
+    setSearchParams({ tab });
+  };
 
   const navigationItems = [
     { id: 'rooms', label: 'Rooms & Bed Matrix', icon: BedDouble, badge: '91% Full' },
