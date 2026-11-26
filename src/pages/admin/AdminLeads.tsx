@@ -11,10 +11,10 @@ import {
   Plus,
   Send,
   Calendar,
-  MessageSquare,
   Sparkles,
   ArrowRight,
 } from 'lucide-react';
+import { WhatsAppIcon } from '../../components/WhatsAppIcon';
 import { LeadItem, useAdmin } from '../../context/AdminContext';
 import { CRM_PRODUCTS } from '../../data/content';
 
@@ -195,9 +195,9 @@ export function AdminLeads() {
                   href={`https://wa.me/${lead.phone.replace(/\D/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-green-600 hover:underline font-bold"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-bold transition shadow-2xs hover:shadow-xs"
                 >
-                  <MessageSquare className="h-3 w-3" /> WhatsApp
+                  <WhatsAppIcon className="h-3 w-3 text-[#25D366]" /> WhatsApp
                 </a>
               </div>
             </div>

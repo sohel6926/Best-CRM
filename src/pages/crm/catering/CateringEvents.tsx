@@ -8,11 +8,12 @@ import {
   AlertCircle,
   Plus,
   Phone,
-  MessageSquare,
+  Eye,
   FileText,
   X,
   Filter,
 } from 'lucide-react';
+import { WhatsAppIcon } from '../../../components/WhatsAppIcon';
 
 export interface CateringEvent {
   id: string;
@@ -251,16 +252,19 @@ export function CateringEvents({ onNotify }: { onNotify: (msg: string) => void }
                   href={`https://wa.me/${ev.phone.replace(/\D/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-green-600 font-bold hover:underline"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-bold transition-all shadow-2xs hover:shadow-xs active:scale-95"
+                  title="Chat with client on WhatsApp"
                 >
-                  <MessageSquare className="h-3 w-3" /> WhatsApp
+                  <WhatsAppIcon className="h-3.5 w-3.5 text-[#25D366]" />
+                  <span>WhatsApp</span>
                 </a>
                 <button
                   type="button"
                   onClick={() => setSelectedEvent(ev)}
-                  className="rounded-lg bg-[#5B21B6] px-3 py-1 font-bold text-white hover:bg-[#4C1D95]"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-[#5B21B6] to-[#7C3AED] hover:from-[#4C1D95] hover:to-[#6D28D9] px-3.5 py-1.5 text-xs font-bold text-white shadow-xs hover:shadow-sm transition-all active:scale-95 cursor-pointer"
                 >
-                  View Details
+                  <Eye className="h-3.5 w-3.5" />
+                  <span>View Details</span>
                 </button>
               </div>
             </div>
@@ -298,15 +302,26 @@ export function CateringEvents({ onNotify }: { onNotify: (msg: string) => void }
               </div>
             </div>
 
-            <div className="flex justify-between items-center pt-2 border-t text-xs">
-              <span className="text-gray-500">Contact: {selectedEvent.phone}</span>
-              <button
-                type="button"
-                onClick={() => setSelectedEvent(null)}
-                className="px-4 py-1.5 rounded-xl bg-[#5B21B6] text-white font-bold"
-              >
-                Close
-              </button>
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-2.5 pt-3 border-t border-gray-100 text-xs">
+              <span className="text-gray-500 font-medium">Client Contact: <strong className="text-gray-800">{selectedEvent.phone}</strong></span>
+              <div className="flex items-center gap-2">
+                <a
+                  href={`https://wa.me/${selectedEvent.phone.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-bold transition shadow-2xs"
+                >
+                  <WhatsAppIcon className="h-3.5 w-3.5 text-[#25D366]" />
+                  <span>WhatsApp Client</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setSelectedEvent(null)}
+                  className="px-4 py-1.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold transition cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>

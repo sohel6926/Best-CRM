@@ -3,9 +3,9 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import {
   ArrowLeft,
   CheckCircle2,
-  MessageSquare,
   Printer,
 } from 'lucide-react';
+import { WhatsAppIcon } from '../../components/WhatsAppIcon';
 import { CRM_PRODUCTS } from '../../data/content';
 import { CrmIcon } from '../../components/CrmIcon';
 import { CateringFullSuite } from './catering/CateringFullSuite';
@@ -118,16 +118,16 @@ export function CrmWorkspacePage() {
               <button
                 type="button"
                 onClick={() => showNotification('Demo WhatsApp invoice & order PDF dispatched to customer!')}
-                className="inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 rounded-xl bg-green-600 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-green-700 cursor-pointer"
+                className="inline-flex flex-1 sm:flex-none items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#20ba59] active:scale-95 text-white px-4 py-2 text-xs font-extrabold shadow-sm hover:shadow transition-all cursor-pointer"
               >
-                <MessageSquare className="h-4 w-4" />
+                <WhatsAppIcon className="h-4 w-4" />
                 <span>WhatsApp Bill</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => window.print()}
-                className="inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 rounded-xl bg-white/15 px-3 py-2 text-xs font-bold text-white border border-white/20 hover:bg-white/25 cursor-pointer"
+                className="inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 rounded-xl bg-white/15 px-3.5 py-2 text-xs font-bold text-white border border-white/20 hover:bg-white/25 active:scale-95 transition cursor-pointer"
               >
                 <Printer className="h-4 w-4" />
                 <span>Print Run</span>
