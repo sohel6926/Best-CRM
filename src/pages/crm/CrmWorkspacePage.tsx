@@ -28,6 +28,7 @@ import {
 import { CRM_PRODUCTS } from '../../data/content';
 import { CrmIcon } from '../../components/CrmIcon';
 import { CateringFullSuite } from './catering/CateringFullSuite';
+import { HostelLayout } from './hostel/HostelLayout';
 
 export function CrmWorkspacePage() {
   const { crmId } = useParams<{ crmId: string }>();
@@ -147,7 +148,7 @@ export function CrmWorkspacePage() {
         )}
 
         {selectedCrmId === 'hostel-crm' && (
-          <HostelSpecificWorkspace onNotify={showNotification} />
+          <HostelLayout />
         )}
 
         {selectedCrmId === 'hotel-crm' && (

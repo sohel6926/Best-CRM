@@ -20,6 +20,7 @@ import { LegalPage } from './pages/LegalPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { AdminLayout } from './pages/admin/AdminLayout';
 import { CrmWorkspacePage } from './pages/crm/CrmWorkspacePage';
+import { HostelLayout } from './pages/crm/hostel/HostelLayout';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -38,6 +39,8 @@ function AppContent() {
       <Routes>
         <Route path="/admin/*" element={<AdminLayout />} />
         <Route path="/admin" element={<AdminLayout />} />
+        <Route path="/app/hostel-crm/*" element={<HostelLayout />} />
+        <Route path="/app/hostel-crm" element={<HostelLayout />} />
         <Route path="/app/:crmId" element={<CrmWorkspacePage />} />
         <Route path="/app" element={<CrmWorkspacePage />} />
       </Routes>
