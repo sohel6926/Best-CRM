@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import { CRM_PRODUCTS } from '../../data/content';
 import { CrmIcon } from '../../components/CrmIcon';
+import { CateringFullSuite } from './catering/CateringFullSuite';
 
 export function CrmWorkspacePage() {
   const { crmId } = useParams<{ crmId: string }>();
@@ -142,7 +143,7 @@ export function CrmWorkspacePage() {
 
         {/* Industry Specific Specialized Modules */}
         {selectedCrmId === 'catering-crm' && (
-          <CateringSpecificWorkspace onNotify={showNotification} />
+          <CateringFullSuite onNotify={showNotification} />
         )}
 
         {selectedCrmId === 'hostel-crm' && (
