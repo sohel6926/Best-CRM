@@ -85,6 +85,14 @@ export function Footer() {
                   Download App
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/admin"
+                  className="font-bold text-[#7C3AED] hover:text-[#5B21B6] transition-colors"
+                >
+                  Admin Portal
+                </Link>
+              </li>
             </ul>
           </div>
 

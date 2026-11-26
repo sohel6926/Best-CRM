@@ -70,6 +70,13 @@ export function Header() {
         {/* Zone 3: Primary CTA + Mobile Toggle */}
         <div className="flex items-center gap-3 shrink-0">
           <Link
+            to="/admin"
+            className="hidden md:inline-flex items-center gap-1.5 text-xs font-bold text-[#5B21B6] bg-[#F3EEFF] hover:bg-[#EDE9FE] px-3 py-1.5 rounded-xl border border-[#DDD6FE] transition"
+          >
+            <span>Admin Portal</span>
+          </Link>
+
+          <Link
             to="/download"
             className="hidden xl:inline-flex items-center gap-1.5 text-sm font-medium text-[#5B21B6] hover:text-[#4C1D95] whitespace-nowrap shrink-0 px-2 py-1.5 rounded-lg transition-colors"
           >
@@ -138,6 +145,13 @@ export function Header() {
             >
               <Smartphone className="h-4 w-4 text-[#7C3AED]" aria-hidden="true" />
               <span>Download App</span>
+            </NavLink>
+
+            <NavLink
+              to="/admin"
+              className="inline-flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-bold text-[#5B21B6] bg-[#F3EEFF] hover:bg-[#EDE9FE]"
+            >
+              <span>Admin & Pricing Portal</span>
             </NavLink>
           </nav>
 
