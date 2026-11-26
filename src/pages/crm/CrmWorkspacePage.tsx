@@ -31,6 +31,7 @@ import { CateringFullSuite } from './catering/CateringFullSuite';
 import { HostelFullSuite } from './hostel/HostelFullSuite';
 import { HotelFullSuite } from './hotel/HotelFullSuite';
 import { KaramFullSuite } from './karam-podi/KaramFullSuite';
+import { PickleFullSuite } from './pickles/PickleFullSuite';
 
 export function CrmWorkspacePage() {
   const { crmId } = useParams<{ crmId: string }>();
@@ -162,7 +163,7 @@ export function CrmWorkspacePage() {
         )}
 
         {selectedCrmId === 'pickles-sales-crm' && (
-          <PicklesSpecificWorkspace onNotify={showNotification} />
+          <PickleFullSuite onNotify={showNotification} />
         )}
 
         {selectedCrmId === 'lunch-box-crm' && (
