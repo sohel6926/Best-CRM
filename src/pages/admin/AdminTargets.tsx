@@ -712,16 +712,16 @@ export function AdminTargets() {
       {/* ========================================================================= */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs animate-in fade-in">
-          <div className="w-full max-w-3xl rounded-2xl bg-white shadow-2xl border border-gray-200 overflow-hidden flex flex-col max-h-[90vh]">
+          <div className="w-full max-w-3xl rounded-2xl bg-white shadow-2xl border border-gray-200 overflow-hidden flex flex-col max-h-[92vh]">
             {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-slate-50/80">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-gray-100 bg-slate-50/80">
               <div className="flex items-center gap-2.5">
-                <div className="h-9 w-9 rounded-xl bg-purple-100 text-[#5B21B6] flex items-center justify-center font-bold">
+                <div className="h-9 w-9 rounded-xl bg-purple-100 text-[#5B21B6] flex items-center justify-center font-bold shrink-0">
                   <Target className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-extrabold text-[#1E1B4B]">Set Business Targets & Growth Quotas</h3>
-                  <p className="text-xs text-gray-500">Configure Annual KPIs and Month-by-Month revenue targets ({activeYear})</p>
+                  <h3 className="text-sm sm:text-base font-extrabold text-[#1E1B4B]">Set Business Targets & Growth Quotas</h3>
+                  <p className="text-[11px] sm:text-xs text-gray-500">Configure Annual KPIs and Month-by-Month revenue targets ({activeYear})</p>
                 </div>
               </div>
               <button
@@ -734,7 +734,7 @@ export function AdminTargets() {
             </div>
 
             {/* Modal Navigation Tabs */}
-            <div className="flex border-b border-gray-200 px-6 bg-white gap-4">
+            <div className="flex border-b border-gray-200 px-4 sm:px-6 bg-white gap-3 sm:gap-4 overflow-x-auto no-scrollbar">
               <button
                 type="button"
                 onClick={() => setModalTab('annual')}
@@ -760,7 +760,7 @@ export function AdminTargets() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 overflow-y-auto space-y-6 flex-1 text-xs">
+            <div className="p-4 sm:p-6 overflow-y-auto space-y-6 flex-1 text-xs">
               {modalTab === 'annual' && (
                 <div className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -838,20 +838,20 @@ export function AdminTargets() {
 
                   {/* Distribution Helpers */}
                   <div className="p-4 rounded-xl bg-purple-50/70 border border-purple-200 space-y-2">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
                       <h4 className="font-bold text-[#1E1B4B]">Auto-Distribute Annual Target Across 12 Months:</h4>
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <button
                           type="button"
                           onClick={handleAutoDistributeEvenly}
-                          className="px-2.5 py-1 rounded-lg bg-white border border-purple-300 text-[#5B21B6] font-bold hover:bg-purple-100 transition"
+                          className="px-2.5 py-1 rounded-lg bg-white border border-purple-300 text-[#5B21B6] font-bold hover:bg-purple-100 transition text-[11px] sm:text-xs"
                         >
                           Distribute Evenly
                         </button>
                         <button
                           type="button"
                           onClick={handleWeddingSeasonWeighting}
-                          className="px-2.5 py-1 rounded-lg bg-[#5B21B6] text-white font-bold hover:bg-[#4C1D95] transition"
+                          className="px-2.5 py-1 rounded-lg bg-[#5B21B6] text-white font-bold hover:bg-[#4C1D95] transition text-[11px] sm:text-xs"
                         >
                           ★ Weight by Wedding Seasons
                         </button>
@@ -911,11 +911,11 @@ export function AdminTargets() {
             </div>
 
             {/* Modal Footer */}
-            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-100 bg-slate-50/80">
+            <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-2.5 px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-100 bg-slate-50/80">
               <button
                 type="button"
                 onClick={handleResetDefaults}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-gray-300 text-gray-600 text-xs font-bold hover:bg-gray-100 transition cursor-pointer"
+                className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-gray-300 text-gray-600 text-xs font-bold hover:bg-gray-100 transition cursor-pointer"
               >
                 <RotateCcw className="h-3.5 w-3.5" />
                 <span>Reset to Defaults</span>
@@ -925,14 +925,14 @@ export function AdminTargets() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 rounded-xl border border-gray-300 text-gray-700 text-xs font-bold hover:bg-gray-100 transition cursor-pointer"
+                  className="flex-1 sm:flex-initial px-4 py-2 rounded-xl border border-gray-300 text-gray-700 text-xs font-bold hover:bg-gray-100 transition cursor-pointer text-center"
                 >
                   Cancel
                 </button>
                 <button
                   type="button"
                   onClick={handleSaveTargets}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#5B21B6] hover:bg-[#4C1D95] text-white text-xs font-bold transition shadow-xs cursor-pointer"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-[#5B21B6] hover:bg-[#4C1D95] text-white text-xs font-bold transition shadow-xs cursor-pointer text-center"
                 >
                   <Save className="h-3.5 w-3.5" />
                   <span>Save Targets</span>

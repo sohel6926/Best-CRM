@@ -117,14 +117,15 @@ export function AdminLayout() {
           </div>
 
           {/* Center / Right controls */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Direct Link to Launch the 6 Industry CRMs */}
             <Link
               to="/app/catering-crm"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-[#DDD6FE] bg-[#FAF8FF] px-3 py-1.5 text-xs font-bold text-[#5B21B6] hover:bg-[#F3EEFF] transition"
+              className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl border border-[#DDD6FE] bg-[#FAF8FF] px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-bold text-[#5B21B6] hover:bg-[#F3EEFF] transition shrink-0"
             >
               <Layers className="h-3.5 w-3.5" />
-              <span>Launch 6 Industry CRMs</span>
+              <span className="hidden sm:inline">Launch 6 Industry CRMs</span>
+              <span className="sm:hidden">6 CRMs</span>
             </Link>
 
             {/* Role indicator */}
@@ -202,6 +203,40 @@ export function AdminLayout() {
           </div>
         </div>
       </header>
+
+      {/* Mobile Horizontal Quick Navigation Strip */}
+      <div className="lg:hidden border-b border-[#E2E8F0] bg-white px-3 py-2 overflow-x-auto no-scrollbar shadow-2xs">
+        <div className="flex items-center gap-1.5 min-w-max">
+          {navSections.flatMap((s) => s.items).map((item) => {
+            const Icon = item.icon;
+            const isActive = currentTab === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setTab(item.id)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap cursor-pointer ${
+                  isActive
+                    ? 'bg-[#5B21B6] text-white shadow-xs'
+                    : 'bg-[#F8FAFC] border border-gray-200 text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                <Icon className={`h-3.5 w-3.5 ${isActive ? 'text-white' : 'text-[#5B21B6]'}`} />
+                <span>{item.label}</span>
+                {item.badge !== undefined && item.badge > 0 && (
+                  <span
+                    className={`px-1.5 py-0.2 rounded-full text-[9px] font-black ${
+                      isActive ? 'bg-white text-[#5B21B6]' : 'bg-red-500 text-white'
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
       {/* Admin Shell: Sidebar + Content Area */}
       <div className="flex flex-1">
