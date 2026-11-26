@@ -577,7 +577,7 @@ export function AdminTargets() {
                   Pacing at {activeMonthPercent}%
                 </span>
               </div>
-              <h4 className="text-lg font-black mt-0.5">{activeMonth.month} • {activeMonth.theme}</h4>
+              <h4 className="text-lg font-black mt-0.5 text-white">{activeMonth.month} • {activeMonth.theme}</h4>
               <p className="text-xs text-purple-200">
                 Target: ₹{(activeMonth.targetAmount / 100000).toFixed(2)} Lakhs • Achieved So Far: ₹{(activeMonth.achievedAmount / 100000).toFixed(2)} Lakhs ({activeMonth.platesCount.toLocaleString('en-IN')} Plates)
               </p>

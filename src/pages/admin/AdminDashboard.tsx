@@ -52,7 +52,7 @@ export function AdminDashboard({ onNavigate }: { onNavigate: (tab: string) => vo
             <Sparkles className="h-3.5 w-3.5 text-[#DDD6FE]" />
             Real-time Business Telemetry
           </span>
-          <h1 className="mt-2 text-2xl font-extrabold sm:text-3xl">Executive Dashboard</h1>
+          <h1 className="mt-2 text-2xl font-extrabold sm:text-3xl text-white drop-shadow-xs">Executive Dashboard</h1>
           <p className="mt-1 text-xs sm:text-sm text-[#DDD6FE]">
             Monitor revenue, CRM subscriber growth, sales pipelines, and support queues across India.
           </p>
