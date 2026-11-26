@@ -20,6 +20,11 @@ import {
   Sparkles,
   Layers,
   ArrowRight,
+  Trophy,
+  Building2,
+  FileSpreadsheet,
+  Bot,
+  History,
 } from 'lucide-react';
 import { BrandLogo } from '../../components/BrandLogo';
 import { useAdmin } from '../../context/AdminContext';
@@ -33,6 +38,11 @@ import { AdminDynamicPricing } from './AdminDynamicPricing';
 import { AdminPricingSimulation } from './AdminPricingSimulation';
 import { AdminAppControl } from './AdminAppControl';
 import { AdminSettings } from './AdminSettings';
+import { AdminTargets } from './AdminTargets';
+import { AdminBranches } from './AdminBranches';
+import { AdminExcelImport } from './AdminExcelImport';
+import { AdminAgents } from './AdminAgents';
+import { AdminAuditHistory } from './AdminAuditHistory';
 import { CRM_PRODUCTS } from '../../data/content';
 
 export function AdminLayout() {
@@ -51,17 +61,37 @@ export function AdminLayout() {
   const pendingLeadsCount = leads.filter((l) => l.status === 'new').length;
   const openTicketsCount = tickets.filter((t) => t.status === 'open').length;
 
-  const navItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'users', label: 'User Management', icon: Users },
-    { id: 'sales', label: 'Sales & GST Reports', icon: BarChart3 },
-    { id: 'leads', label: 'Enquiries & Leads', icon: Target, badge: pendingLeadsCount },
-    { id: 'support', label: 'Support & FAQs', icon: LifeBuoy, badge: openTicketsCount },
-    { id: 'plans', label: 'Plans & Entitlements', icon: CreditCard },
-    { id: 'dynamic_pricing', label: 'Dynamic Pricing', icon: Zap },
-    { id: 'simulation', label: 'Pricing Simulation', icon: TrendingUp },
-    { id: 'app_control', label: 'Website & App Control', icon: Sliders },
-    { id: 'settings', label: 'Security & Settings', icon: ShieldCheck },
+  const navSections = [
+    {
+      title: 'Targets & Growth',
+      items: [
+        { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+        { id: 'targets', label: 'Year Target & Goals', icon: Trophy },
+        { id: 'leads', label: 'Enquiries & Leads', icon: Target, badge: pendingLeadsCount },
+        { id: 'users', label: 'User Management', icon: Users },
+      ],
+    },
+    {
+      title: 'Commercial & Financials',
+      items: [
+        { id: 'sales', label: 'Sales & GST Reports', icon: BarChart3 },
+        { id: 'plans', label: 'Plans & Entitlements', icon: CreditCard },
+        { id: 'dynamic_pricing', label: 'Dynamic Pricing', icon: Zap },
+        { id: 'simulation', label: 'Pricing Simulation', icon: TrendingUp },
+      ],
+    },
+    {
+      title: 'Setup & Operations',
+      items: [
+        { id: 'branches', label: 'Company · Brands · Branches', icon: Building2 },
+        { id: 'excel_import', label: 'Excel & CSV Import Hub', icon: FileSpreadsheet },
+        { id: 'agents', label: 'AI Agents & WhatsApp Bots', icon: Bot },
+        { id: 'audit', label: 'Change History & Audit', icon: History },
+        { id: 'support', label: 'Support & FAQs', icon: LifeBuoy, badge: openTicketsCount },
+        { id: 'app_control', label: 'Website & App Control', icon: Sliders },
+        { id: 'settings', label: 'Security & Settings', icon: ShieldCheck },
+      ],
+    },
   ];
 
   return (
@@ -194,38 +224,47 @@ export function AdminLayout() {
                 </button>
               </div>
 
-              {/* Navigation Links */}
-              <nav className="space-y-1">
-                {navItems.map((item) => {
-                  const Icon = item.icon;
-                  const isActive = currentTab === item.id;
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => setTab(item.id)}
-                      className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-xs font-bold transition cursor-pointer ${
-                        isActive
-                          ? 'bg-[#5B21B6] text-white shadow-xs'
-                          : 'text-[#475569] hover:bg-[#F1F5F9] hover:text-[#1E1B4B]'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <Icon className="h-4 w-4 shrink-0" />
-                        <span>{item.label}</span>
-                      </div>
-                      {item.badge !== undefined && item.badge > 0 && (
-                        <span
-                          className={`rounded-full px-2 py-0.5 text-[10px] font-extrabold ${
-                            isActive ? 'bg-white text-[#5B21B6]' : 'bg-[#EDE9FE] text-[#5B21B6]'
+              {/* Categorized Navigation Links with Group Headers */}
+              <nav className="space-y-4">
+                {navSections.map((section) => (
+                  <div key={section.title} className="space-y-1">
+                    <div className="px-3 pt-1 pb-1">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-amber-700">
+                        {section.title}
+                      </span>
+                    </div>
+                    {section.items.map((item) => {
+                      const Icon = item.icon;
+                      const isActive = currentTab === item.id;
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => setTab(item.id)}
+                          className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-bold transition cursor-pointer ${
+                            isActive
+                              ? 'bg-[#5B21B6] text-white shadow-xs'
+                              : 'text-[#475569] hover:bg-[#F1F5F9] hover:text-[#1E1B4B]'
                           }`}
                         >
-                          {item.badge}
-                        </span>
-                      )}
-                    </button>
-                  );
-                })}
+                          <div className="flex items-center gap-2.5">
+                            <Icon className={`h-4 w-4 shrink-0 ${isActive ? 'text-white' : 'text-[#5B21B6]'}`} />
+                            <span>{item.label}</span>
+                          </div>
+                          {item.badge !== undefined && item.badge > 0 && (
+                            <span
+                              className={`rounded-full px-2 py-0.5 text-[10px] font-extrabold ${
+                                isActive ? 'bg-white text-[#5B21B6]' : 'bg-[#EDE9FE] text-[#5B21B6]'
+                              }`}
+                            >
+                              {item.badge}
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ))}
               </nav>
 
               {/* Industry CRMs Hub Shortcut */}
@@ -278,6 +317,7 @@ export function AdminLayout() {
         {/* Main Content Area */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
           {currentTab === 'dashboard' && <AdminDashboard onNavigate={setTab} />}
+          {currentTab === 'targets' && <AdminTargets />}
           {currentTab === 'users' && <AdminUsers />}
           {currentTab === 'sales' && <AdminSalesReports />}
           {currentTab === 'leads' && <AdminLeads />}
@@ -285,6 +325,10 @@ export function AdminLayout() {
           {currentTab === 'plans' && <AdminPricingPlans />}
           {currentTab === 'dynamic_pricing' && <AdminDynamicPricing />}
           {currentTab === 'simulation' && <AdminPricingSimulation />}
+          {currentTab === 'branches' && <AdminBranches />}
+          {currentTab === 'excel_import' && <AdminExcelImport />}
+          {currentTab === 'agents' && <AdminAgents />}
+          {currentTab === 'audit' && <AdminAuditHistory />}
           {currentTab === 'app_control' && <AdminAppControl />}
           {currentTab === 'settings' && <AdminSettings />}
           {currentTab === 'crm_workspaces' && (
