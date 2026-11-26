@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 export function NotFoundPage() {
   return (
-    <div className="bg-gradient-to-b from-[#F3EEFF] to-white py-24">
+    <div className="bg-gradient-to-b from-[#F3EEFF] to-white py-12 sm:py-14">
       <div className="mx-auto max-w-xl px-4 text-center">
         <p className="text-sm font-bold text-[#7C3AED] tabular-nums">404 Error</p>
         <h1 className="mt-2 text-4xl font-extrabold text-[#1E1B4B] sm:text-5xl">

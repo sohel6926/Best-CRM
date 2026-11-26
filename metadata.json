@@ -1,6 +1,5 @@
 {
   "name": "bestCRM — Ready-Made CRMs for Small Businesses",
   "description": "All-in-one ready-made CRM platform built for catering, hostels, hotels, karam podi, pickles, and lunch box businesses.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "requestFramePermissions": []
 }

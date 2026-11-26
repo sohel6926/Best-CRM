@@ -44,7 +44,7 @@ export function ContactPage() {
   return (
     <div className="bg-white">
       {/* Header */}
-      <section className="bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-14 pb-12 sm:pt-16">
+      <section className="bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-8 pb-8 sm:pt-10 sm:pb-9">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8 hero-entrance">
           <span className="inline-block rounded-full border border-[#DDD6FE] bg-white px-3.5 py-1 text-xs font-semibold text-[#5B21B6]">
             Get in Touch
@@ -59,7 +59,7 @@ export function ContactPage() {
       </section>
 
       {/* 3-Column Layout */}
-      <section className="py-10 pb-20">
+      <section className="py-6 sm:py-8 pb-12 sm:pb-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="grid grid-cols-1 gap-7 lg:grid-cols-12 lg:items-start">

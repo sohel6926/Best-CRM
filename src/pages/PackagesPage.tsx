@@ -32,7 +32,7 @@ export function PackagesPage() {
   return (
     <div className="bg-white">
       {/* Header Banner */}
-      <section className="bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-14 pb-12 sm:pt-16 sm:pb-14">
+      <section className="bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-8 pb-8 sm:pt-10 sm:pb-9">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8 hero-entrance">
           <span className="inline-block rounded-full border border-[#DDD6FE] bg-white px-3.5 py-1 text-xs font-semibold text-[#5B21B6]">
             Pricing & Plans
@@ -84,7 +84,7 @@ export function PackagesPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-8 sm:py-12">
+      <section className="py-6 sm:py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <StaggerGrid className="grid grid-cols-1 gap-7 lg:grid-cols-3 lg:items-stretch">
             {PRICING_PLANS.map((plan) => {
@@ -170,7 +170,7 @@ export function PackagesPage() {
       </section>
 
       {/* Compare Plans Table */}
-      <section className="py-14 sm:py-16 bg-[#FAF8FF] border-y border-[#EDE9FE]">
+      <section className="py-8 sm:py-10 bg-[#FAF8FF] border-y border-[#EDE9FE]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="text-center">
             <h2 className="text-2xl font-bold text-[#1E1B4B] sm:text-3xl">
@@ -235,7 +235,7 @@ export function PackagesPage() {
       </section>
 
       {/* FAQ Accordion */}
-      <section className="py-14 sm:py-16 bg-white">
+      <section className="py-8 sm:py-10 bg-white">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="text-center">
             <h2 className="text-2xl font-bold text-[#1E1B4B] sm:text-3xl">
@@ -287,7 +287,7 @@ export function PackagesPage() {
       </section>
 
       {/* Enquiry Strip */}
-      <section className="pb-16 pt-4">
+      <section className="pb-10 pt-2">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-col items-center justify-between gap-6 rounded-[20px] border border-[#DDD6FE] bg-[#F3EEFF] px-6 py-8 sm:flex-row sm:px-10">

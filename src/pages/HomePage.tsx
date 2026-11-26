@@ -31,7 +31,7 @@ export function HomePage() {
   return (
     <div>
       {/* 1. Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-10 pb-16 sm:pt-14 sm:pb-24">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-8 pb-8 sm:pt-10 sm:pb-10">
         <div
           className="pointer-events-none absolute -top-24 right-0 h-[440px] w-[440px] rounded-full bg-[#EDE9FE]/70 blur-3xl"
           aria-hidden="true"
@@ -99,7 +99,7 @@ export function HomePage() {
       </section>
 
       {/* 2. Why Choose bestCRM? */}
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-8 sm:py-10 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <span className="inline-block rounded-full bg-[#F3EEFF] px-3.5 py-1 text-xs font-semibold text-[#5B21B6]">
@@ -113,7 +113,7 @@ export function HomePage() {
             </p>
           </ScrollReveal>
 
-          <StaggerGrid className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <StaggerGrid className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {WHY_CHOOSE_ITEMS.map((item) => (
               <StaggerItem key={item.id}>
                 <div className="card-surface h-full p-6 transition duration-200 hover:-translate-y-1 hover:shadow-[0_18px_36px_-14px_rgba(91,33,182,0.16)]">
@@ -136,7 +136,7 @@ export function HomePage() {
       </section>
 
       {/* 3. CRMs for Your Business */}
-      <section id="industry-crms" className="bg-[#FAF8FF] py-16 sm:py-20 border-y border-[#EDE9FE]">
+      <section id="industry-crms" className="bg-[#FAF8FF] py-8 sm:py-10 border-y border-[#EDE9FE]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
@@ -159,7 +159,7 @@ export function HomePage() {
             </Link>
           </ScrollReveal>
 
-          <StaggerGrid className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerGrid className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {CRM_PRODUCTS.map((crm) => (
               <StaggerItem key={crm.id}>
                 <article className="flex h-full flex-col justify-between rounded-[18px] border border-[#E9D5FF] bg-white p-6 shadow-[0_8px_24px_-12px_rgba(76,29,149,0.08)] transition duration-200 hover:-translate-y-1 hover:border-[#C4B5FD] hover:shadow-[0_18px_36px_-14px_rgba(91,33,182,0.16)]">
@@ -197,7 +197,7 @@ export function HomePage() {
       </section>
 
       {/* 4. Our Services (5 pastel-tinted cards matching each icon color) */}
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-8 sm:py-10 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
@@ -220,7 +220,7 @@ export function HomePage() {
             </Link>
           </ScrollReveal>
 
-          <StaggerGrid className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          <StaggerGrid className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
             {SERVICES_LIST.map((service) => (
               <StaggerItem key={service.id}>
                 <Link
@@ -250,7 +250,7 @@ export function HomePage() {
       </section>
 
       {/* 5. Packages Banner */}
-      <section className="py-10 sm:py-14">
+      <section className="py-6 sm:py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#4C1D95] via-[#5B21B6] to-[#7C3AED] px-6 py-12 text-white shadow-[0_24px_60px_-15px_rgba(76,29,149,0.45)] sm:px-12 lg:px-14">
@@ -334,7 +334,7 @@ export function HomePage() {
       </section>
 
       {/* 6. Stats Row */}
-      <section className="py-12 sm:py-16 bg-white">
+      <section className="py-6 sm:py-8 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <StaggerGrid className="grid grid-cols-2 gap-6 rounded-[20px] border border-[#EDE9FE] bg-[#FAF8FF] p-8 sm:grid-cols-4">
             {STATS_ROW.map((stat, idx) => (
@@ -350,7 +350,7 @@ export function HomePage() {
       </section>
 
       {/* 7. Closing CTA */}
-      <section className="py-14 sm:py-20 bg-gradient-to-b from-white to-[#F3EEFF]/65">
+      <section className="py-8 sm:py-10 bg-gradient-to-b from-white to-[#F3EEFF]/65">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="grid grid-cols-1 items-center gap-12 rounded-[24px] border border-[#DDD6FE] bg-white p-8 shadow-[0_20px_50px_-18px_rgba(76,29,149,0.14)] sm:p-12 lg:grid-cols-12">

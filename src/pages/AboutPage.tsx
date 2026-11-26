@@ -16,7 +16,7 @@ export function AboutPage() {
   return (
     <div className="bg-white">
       {/* Intro Hero */}
-      <section className="bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-14 pb-16">
+      <section className="bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-8 pb-8 sm:pt-10 sm:pb-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
             <div className="lg:col-span-6 hero-entrance">
@@ -69,7 +69,7 @@ export function AboutPage() {
       </section>
 
       {/* Vision, Mission, Values */}
-      <section className="py-14 sm:py-16">
+      <section className="py-8 sm:py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <StaggerGrid className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {ABOUT_CONTENT.pillars.map((pillar, idx) => {
@@ -95,7 +95,7 @@ export function AboutPage() {
       </section>
 
       {/* Business Expertise and Objectives */}
-      <section className="border-t border-[#EDE9FE] bg-[#FAF8FF] py-16">
+      <section className="border-t border-[#EDE9FE] bg-[#FAF8FF] py-8 sm:py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-2xl">
             <span className="inline-block rounded-full border border-[#DDD6FE] bg-white px-3.5 py-1 text-xs font-semibold text-[#5B21B6]">

@@ -19,7 +19,7 @@ export function ServicesPage() {
   return (
     <div className="bg-white">
       {/* Header */}
-      <section className="bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-14 pb-12 sm:pt-16 sm:pb-14">
+      <section className="bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-8 pb-8 sm:pt-10 sm:pb-9">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8 hero-entrance">
           <span className="inline-block rounded-full border border-[#DDD6FE] bg-white px-3.5 py-1 text-xs font-semibold text-[#5B21B6]">
             What We Offer
@@ -34,7 +34,7 @@ export function ServicesPage() {
       </section>
 
       {/* 5 Expanded Service Cards */}
-      <section className="py-10 sm:py-14">
+      <section className="py-6 sm:py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <StaggerGrid className="grid grid-cols-1 gap-7 md:grid-cols-2">
             {SERVICES_LIST.map((service, idx) => (
@@ -100,7 +100,7 @@ export function ServicesPage() {
       </section>
 
       {/* How It Works (Numbered Sequence) */}
-      <section className="border-y border-[#EDE9FE] bg-[#FAF8FF] py-16">
+      <section className="border-y border-[#EDE9FE] bg-[#FAF8FF] py-8 sm:py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <span className="inline-block rounded-full bg-white border border-[#DDD6FE] px-3.5 py-1 text-xs font-semibold text-[#5B21B6]">
@@ -133,7 +133,7 @@ export function ServicesPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16">
+      <section className="py-8 sm:py-10">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-col items-center justify-between gap-6 rounded-[24px] bg-gradient-to-r from-[#4C1D95] to-[#7C3AED] p-8 text-white shadow-lg sm:flex-row sm:p-10">

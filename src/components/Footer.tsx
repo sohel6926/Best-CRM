@@ -37,7 +37,7 @@ function SocialIcon({ id }: { id: 'linkedin' | 'instagram' | 'youtube' | 'x' }) 
 export function Footer() {
   return (
     <footer className="border-t border-[#EDE9FE] bg-[#FAF8FF] text-[#475569]">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12">
           {/* Column 1: Brand & Blurb */}
           <div className="lg:col-span-4 space-y-4">

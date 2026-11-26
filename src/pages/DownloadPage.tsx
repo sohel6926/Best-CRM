@@ -32,7 +32,7 @@ export function DownloadPage() {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white py-14 sm:py-20">
+    <div className="bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white py-8 sm:py-12">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Confirmation Banner */}
         <div className="hero-entrance rounded-[24px] border border-[#DDD6FE] bg-white p-7 sm:p-10 shadow-[0_20px_50px_-18px_rgba(76,29,149,0.16)]">

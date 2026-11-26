@@ -5,7 +5,7 @@ export function LegalPage({ type }: { type: 'privacy' | 'terms' }) {
   const isPrivacy = type === 'privacy';
 
   return (
-    <div className="bg-white py-14 sm:py-20">
+    <div className="bg-white py-8 sm:py-12">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <span className="inline-block rounded-full border border-[#DDD6FE] bg-[#FAF8FF] px-3.5 py-1 text-xs font-semibold text-[#5B21B6]">
           Legal Documentation

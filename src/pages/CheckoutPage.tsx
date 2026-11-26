@@ -78,7 +78,7 @@ export function CheckoutPage() {
   };
 
   return (
-    <div className="bg-[#FAF8FF] py-12 sm:py-16 min-h-[75vh]">
+    <div className="bg-[#FAF8FF] py-8 sm:py-10 min-h-[75vh]">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Top Heading & Stepper */}
         <div className="mb-8">

@@ -63,7 +63,7 @@ export function CrmDetailPage() {
       </div>
 
       {/* Hero Header */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-12 pb-12 sm:pt-16">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#F3EEFF] via-[#FAF8FF] to-white pt-8 pb-8 sm:pt-10 sm:pb-9">
         <div
           className="pointer-events-none absolute -top-24 right-0 h-[380px] w-[380px] rounded-full bg-[#EDE9FE]/80 blur-3xl"
           aria-hidden="true"
@@ -115,7 +115,7 @@ export function CrmDetailPage() {
       </section>
 
       {/* Interactive Animated Dashboard Showcase */}
-      <section className="py-6 sm:py-10">
+      <section className="py-4 sm:py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <CrmDashboardShowcase crm={crm} />
@@ -124,7 +124,7 @@ export function CrmDetailPage() {
       </section>
 
       {/* Included Workflows */}
-      <section className="py-14 sm:py-16">
+      <section className="py-8 sm:py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-2xl">
             <span className="inline-block rounded-full bg-[#F3EEFF] px-3.5 py-1 text-xs font-semibold text-[#5B21B6]">
@@ -159,7 +159,7 @@ export function CrmDetailPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="pb-16 pt-2">
+      <section className="pb-10 pt-2">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-col items-center justify-between gap-6 rounded-[24px] bg-gradient-to-r from-[#4C1D95] via-[#5B21B6] to-[#7C3AED] p-8 text-white shadow-lg sm:flex-row sm:p-10">
