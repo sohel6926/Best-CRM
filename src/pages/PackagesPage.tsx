@@ -8,6 +8,7 @@ import {
   PricingPlan,
 } from '../data/content';
 import { BillingCycle, useApp } from '../context/AppContext';
+import { useAdmin } from '../context/AdminContext';
 import {
   ScrollReveal,
   StaggerGrid,
@@ -19,6 +20,7 @@ export function PackagesPage() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
   const navigate = useNavigate();
   const { selectPlanForCheckout, openEnquiryModal } = useApp();
+  const { customPlanPrices } = useAdmin();
 
   const handlePlanClick = (plan: PricingPlan) => {
     if (plan.id === 'enterprise' || plan.ctaType === 'sales') {
@@ -88,12 +90,15 @@ export function PackagesPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <StaggerGrid className="grid grid-cols-1 gap-7 lg:grid-cols-3 lg:items-stretch">
             {PRICING_PLANS.map((plan) => {
+              const baseMonthly = customPlanPrices[plan.id] ?? plan.monthlyPrice;
+              const baseYearlyMonthly = baseMonthly ? Math.round(baseMonthly * 0.8) : plan.yearlyMonthlyEquivalent;
+
               const displayPrice =
-                plan.monthlyPrice === null
+                baseMonthly === null || baseMonthly === undefined
                   ? plan.priceLabel
                   : billingCycle === 'monthly'
-                  ? `₹${plan.monthlyPrice.toLocaleString('en-IN')}`
-                  : `₹${plan.yearlyMonthlyEquivalent?.toLocaleString('en-IN')}`;
+                  ? `₹${baseMonthly.toLocaleString('en-IN')}`
+                  : `₹${baseYearlyMonthly?.toLocaleString('en-IN')}`;
 
               return (
                 <StaggerItem key={plan.id}>

@@ -1,78 +1,47 @@
 import React, { useState } from 'react';
 import { 
   Building2, MapPin, Plus, CheckCircle2, ShieldCheck, 
-  Store, Utensils, Phone, Mail, Globe, ExternalLink 
+  Store, Utensils, Phone, Mail, Globe, ExternalLink,
+  Edit3, Trash2, X
 } from 'lucide-react';
-
-interface BranchItem {
-  id: string;
-  name: string;
-  brand: string;
-  type: 'Central Base Kitchen' | 'Cloud Kitchen & Depot' | 'Retail Tasting Studio' | 'Regional Processing Center';
-  gstin: string;
-  fssaiNumber: string;
-  manager: string;
-  phone: string;
-  address: string;
-  capacityPerDay: string;
-  status: 'Active' | 'Under Audit';
-}
+import { BranchItem, useAdmin } from '../../context/AdminContext';
 
 export function AdminBranches() {
-  const [branches, setBranches] = useState<BranchItem[]>([
-    {
-      id: 'BR-01',
-      name: 'Madhapur Mega Base Kitchen & Warehousing',
-      brand: 'Swastik Grand Catering & BestCRM Labs',
-      type: 'Central Base Kitchen',
-      gstin: '36AAACB1234F1Z1',
-      fssaiNumber: '13624014000321',
-      manager: 'Chef K. Venkatesh Rao',
-      phone: '+91 98490 22110',
-      address: 'Plot 42, Silicon Valley Layout, Madhapur, Hyderabad - 500081',
-      capacityPerDay: '3,500 Plates / Shift',
-      status: 'Active',
-    },
-    {
-      id: 'BR-02',
-      name: 'Financial District Corporate Tiffin Depot',
-      brand: 'LunchBox OS Corporate Express',
-      type: 'Cloud Kitchen & Depot',
-      gstin: '36AAACB1234F1Z1',
-      fssaiNumber: '13624014000455',
-      manager: 'Syed Imran (Logistics Lead)',
-      phone: '+91 99891 44220',
-      address: 'Nanakramguda Hub, Opp WaveRock, Gachibowli - 500032',
-      capacityPerDay: '800 Tiffins / Day',
-      status: 'Active',
-    },
-    {
-      id: 'BR-03',
-      name: 'Banjara Hills Wedding Tasting Lounge',
-      brand: 'Swastik Royal Events Suite',
-      type: 'Retail Tasting Studio',
-      gstin: '36AAACB1234F1Z1',
-      fssaiNumber: '13624014000108',
-      manager: 'Lavanya Reddy (Events Consultant)',
-      phone: '+91 97001 88992',
-      address: 'Road No 12, Banjara Hills, Hyderabad - 500034',
-      capacityPerDay: '8 Tasting Sessions / Day',
-      status: 'Active',
-    },
-    {
-      id: 'BR-04',
-      name: 'Tenali & Guntur Spice Processing Mill',
-      brand: 'Swastik Andhra Karam & Pickles',
-      type: 'Regional Processing Center',
-      gstin: '37AAACB1234F1Z9',
-      fssaiNumber: '10123028000890',
-      manager: 'M. Sreeramulu',
-      phone: '+91 98852 33441',
-      address: 'Mandi Road, Tenali Rural, Andhra Pradesh - 522201',
-      capacityPerDay: '1,200 Kg Podi / Day',
-      status: 'Active',
-    },
-  ]);
+  const { branches, addBranch, updateBranch, deleteBranch } = useAdmin();
+  const [addModalOpen, setAddModalOpen] = useState(false);
+  const [editingBranch, setEditingBranch] = useState<BranchItem | null>(null);
+
+  // New Branch Form State
+  const [name, setName] = useState('');
+  const [brand, setBrand] = useState('Swastik Grand Catering & BestCRM Labs');
+  const [type, setType] = useState('Central Base Kitchen');
+  const [gstin, setGstin] = useState('36AAACB1234F1Z1');
+  const [fssaiNumber, setFssaiNumber] = useState('13624014000321');
+  const [manager, setManager] = useState('');
+  const [phone, setPhone] = useState('+91 98490 22110');
+  const [address, setAddress] = useState('');
+  const [capacityPerDay, setCapacityPerDay] = useState('2,500 Plates / Day');
+  const [status, setStatus] = useState<'Active' | 'Under Audit'>('Active');
+
+  const handleCreateBranch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !manager) return;
+    addBranch({
+      name,
+      brand,
+      type,
+      gstin,
+      fssaiNumber,
+      manager,
+      phone,
+      address: address || 'Hyderabad, Telangana',
+      capacityPerDay,
+      status,
+    });
+    setAddModalOpen(false);
+    setName('');
+    setManager('');
+  };
 
   return (
     <div className="space-y-6">
@@ -88,6 +57,7 @@ export function AdminBranches() {
         <div className="flex items-center gap-2">
           <button
             type="button"
+            onClick={() => setAddModalOpen(true)}
             className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#5B21B6] hover:bg-[#4C1D95] text-white text-xs font-bold transition shadow-xs cursor-pointer"
           >
             <Plus className="h-3.5 w-3.5" />
@@ -123,7 +93,7 @@ export function AdminBranches() {
       {/* Branches Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {branches.map((b) => (
-          <div key={b.id} className="bg-white rounded-2xl border border-[#E2E8F0] p-5 shadow-xs space-y-3">
+          <div key={b.id} className="bg-white rounded-2xl border border-[#E2E8F0] p-5 shadow-xs space-y-3 hover:border-purple-200 transition">
             <div className="flex items-start justify-between">
               <div>
                 <span className="text-[10px] font-mono font-bold text-[#5B21B6] bg-purple-50 px-2 py-0.5 rounded-md">
@@ -132,9 +102,38 @@ export function AdminBranches() {
                 <h3 className="font-extrabold text-base text-[#1E1B4B] mt-1">{b.name}</h3>
                 <p className="text-xs text-[#5B21B6] font-semibold">{b.brand}</p>
               </div>
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800">
-                {b.status}
-              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => updateBranch(b.id, { status: b.status === 'Active' ? 'Under Audit' : 'Active' })}
+                  title="Toggle Audit Status"
+                  className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold cursor-pointer transition ${
+                    b.status === 'Active' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                  }`}
+                >
+                  ● {b.status}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setEditingBranch({ ...b })}
+                  title="Edit Branch Details"
+                  className="p-1 rounded-lg border border-purple-200 text-[#5B21B6] bg-purple-50 hover:bg-purple-100 cursor-pointer"
+                >
+                  <Edit3 className="h-3.5 w-3.5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (window.confirm(`Delete branch ${b.name}?`)) {
+                      deleteBranch(b.id);
+                    }
+                  }}
+                  title="Delete Branch"
+                  className="p-1 rounded-lg border border-red-200 text-red-600 bg-red-50 hover:bg-red-100 cursor-pointer"
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                </button>
+              </div>
             </div>
 
             <div className="p-3 bg-slate-50 rounded-xl space-y-1.5 text-xs">
@@ -162,6 +161,313 @@ export function AdminBranches() {
           </div>
         ))}
       </div>
+
+      {/* Add Branch Modal */}
+      {addModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-xs">
+          <form
+            onSubmit={handleCreateBranch}
+            className="w-full max-w-xl rounded-2xl bg-white p-6 shadow-2xl space-y-4"
+          >
+            <div className="flex items-center justify-between border-b border-[#F3EEFF] pb-3">
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#7C3AED]">New Branch</span>
+                <h2 className="text-base font-bold text-[#1E1B4B]">Register Branch / Base Kitchen</h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setAddModalOpen(false)}
+                className="rounded-lg p-1 text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 text-xs">
+              <div className="sm:col-span-2">
+                <label className="font-semibold text-[#475569]">Facility / Branch Name</label>
+                <input
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="e.g. Madhapur Central Base Kitchen"
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Sub-Brand</label>
+                <input
+                  type="text"
+                  value={brand}
+                  onChange={(e) => setBrand(e.target.value)}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Facility Type</label>
+                <select
+                  value={type}
+                  onChange={(e) => setType(e.target.value)}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                >
+                  <option value="Central Base Kitchen">Central Base Kitchen</option>
+                  <option value="Cloud Kitchen & Depot">Cloud Kitchen & Depot</option>
+                  <option value="Retail Tasting Studio">Retail Tasting Studio</option>
+                  <option value="Regional Processing Center">Regional Processing Center</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Manager Name</label>
+                <input
+                  type="text"
+                  required
+                  value={manager}
+                  onChange={(e) => setManager(e.target.value)}
+                  placeholder="e.g. Chef K. Venkatesh Rao"
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Phone</label>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">GSTIN Registration</label>
+                <input
+                  type="text"
+                  value={gstin}
+                  onChange={(e) => setGstin(e.target.value)}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">FSSAI License No.</label>
+                <input
+                  type="text"
+                  value={fssaiNumber}
+                  onChange={(e) => setFssaiNumber(e.target.value)}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="font-semibold text-[#475569]">Address</label>
+                <input
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Plot / Street / City / PIN"
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Output Capacity</label>
+                <input
+                  type="text"
+                  value={capacityPerDay}
+                  onChange={(e) => setCapacityPerDay(e.target.value)}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Status</label>
+                <select
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value as any)}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                >
+                  <option value="Active">Active</option>
+                  <option value="Under Audit">Under Audit</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2.5 border-t border-[#F3EEFF] pt-4">
+              <button
+                type="button"
+                onClick={() => setAddModalOpen(false)}
+                className="rounded-xl border border-[#EDE9FE] px-4 py-2 text-xs font-semibold text-[#64748B] hover:bg-[#FAF8FF]"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="rounded-xl bg-[#5B21B6] px-5 py-2 text-xs font-semibold text-white hover:bg-[#4C1D95]"
+              >
+                Create Branch
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {/* Edit Branch Modal */}
+      {editingBranch && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-xs">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              updateBranch(editingBranch.id, editingBranch);
+              setEditingBranch(null);
+            }}
+            className="w-full max-w-xl rounded-2xl bg-white p-6 shadow-2xl space-y-4"
+          >
+            <div className="flex items-center justify-between border-b border-[#F3EEFF] pb-3">
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#7C3AED]">Edit Branch #{editingBranch.id}</span>
+                <h2 className="text-base font-bold text-[#1E1B4B]">{editingBranch.name}</h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setEditingBranch(null)}
+                className="rounded-lg p-1 text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 text-xs">
+              <div className="sm:col-span-2">
+                <label className="font-semibold text-[#475569]">Facility / Branch Name</label>
+                <input
+                  type="text"
+                  required
+                  value={editingBranch.name}
+                  onChange={(e) => setEditingBranch({ ...editingBranch, name: e.target.value })}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Sub-Brand</label>
+                <input
+                  type="text"
+                  value={editingBranch.brand}
+                  onChange={(e) => setEditingBranch({ ...editingBranch, brand: e.target.value })}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Facility Type</label>
+                <select
+                  value={editingBranch.type}
+                  onChange={(e) => setEditingBranch({ ...editingBranch, type: e.target.value })}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                >
+                  <option value="Central Base Kitchen">Central Base Kitchen</option>
+                  <option value="Cloud Kitchen & Depot">Cloud Kitchen & Depot</option>
+                  <option value="Retail Tasting Studio">Retail Tasting Studio</option>
+                  <option value="Regional Processing Center">Regional Processing Center</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Manager Name</label>
+                <input
+                  type="text"
+                  required
+                  value={editingBranch.manager}
+                  onChange={(e) => setEditingBranch({ ...editingBranch, manager: e.target.value })}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Phone</label>
+                <input
+                  type="tel"
+                  value={editingBranch.phone}
+                  onChange={(e) => setEditingBranch({ ...editingBranch, phone: e.target.value })}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">GSTIN Registration</label>
+                <input
+                  type="text"
+                  value={editingBranch.gstin}
+                  onChange={(e) => setEditingBranch({ ...editingBranch, gstin: e.target.value })}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">FSSAI License No.</label>
+                <input
+                  type="text"
+                  value={editingBranch.fssaiNumber}
+                  onChange={(e) => setEditingBranch({ ...editingBranch, fssaiNumber: e.target.value })}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="font-semibold text-[#475569]">Address</label>
+                <input
+                  type="text"
+                  value={editingBranch.address}
+                  onChange={(e) => setEditingBranch({ ...editingBranch, address: e.target.value })}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Output Capacity</label>
+                <input
+                  type="text"
+                  value={editingBranch.capacityPerDay}
+                  onChange={(e) => setEditingBranch({ ...editingBranch, capacityPerDay: e.target.value })}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                />
+              </div>
+
+              <div>
+                <label className="font-semibold text-[#475569]">Status</label>
+                <select
+                  value={editingBranch.status}
+                  onChange={(e) => setEditingBranch({ ...editingBranch, status: e.target.value as any })}
+                  className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+                >
+                  <option value="Active">Active</option>
+                  <option value="Under Audit">Under Audit</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2.5 border-t border-[#F3EEFF] pt-4">
+              <button
+                type="button"
+                onClick={() => setEditingBranch(null)}
+                className="rounded-xl border border-[#EDE9FE] px-4 py-2 text-xs font-semibold text-[#64748B] hover:bg-[#FAF8FF]"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="rounded-xl bg-[#5B21B6] px-5 py-2 text-xs font-semibold text-white hover:bg-[#4C1D95]"
+              >
+                Save Branch Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

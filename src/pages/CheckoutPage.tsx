@@ -11,10 +11,12 @@ import {
 } from 'lucide-react';
 import { CRM_PRODUCTS, PRICING_PLANS } from '../data/content';
 import { useApp } from '../context/AppContext';
+import { useAdmin } from '../context/AdminContext';
 import { CrmIcon } from '../components/CrmIcon';
 
 export function CheckoutPage() {
   const { checkout, setCheckout, selectedPlan, selectedCrm } = useApp();
+  const { customPlanPrices } = useAdmin();
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [error, setError] = useState('');
   const [processing, setProcessing] = useState(false);
@@ -25,10 +27,13 @@ export function CheckoutPage() {
 
   const navigate = useNavigate();
 
+  const liveMonthlyPrice = customPlanPrices[selectedPlan.id] ?? selectedPlan.monthlyPrice ?? 2499;
+  const liveYearlyMonthlyEquivalent = Math.round(liveMonthlyPrice * 0.8);
+
   const unitPrice =
     checkout.billingCycle === 'monthly'
-      ? selectedPlan.monthlyPrice ?? 2499
-      : selectedPlan.yearlyMonthlyEquivalent ?? 1999;
+      ? liveMonthlyPrice
+      : liveYearlyMonthlyEquivalent;
 
   const totalPayable =
     checkout.billingCycle === 'monthly' ? unitPrice : unitPrice * 12;

@@ -3,11 +3,13 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, Menu, X, Smartphone } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
 import { NAV_ITEMS } from '../data/content';
+import { useAdmin } from '../context/AdminContext';
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { announcement } = useAdmin();
 
   useEffect(() => {
     setMobileOpen(false);
@@ -23,7 +25,23 @@ export function Header() {
   }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#EDE9FE] bg-white/95 backdrop-blur-md">
+    <>
+      {/* Top Announcement Ribbon synced from Admin Panel */}
+      {announcement.enabled && (
+        <div className="bg-gradient-to-r from-[#4C1D95] via-[#5B21B6] to-[#7C3AED] px-4 py-2 text-center text-xs text-white shadow-xs">
+          <div className="mx-auto flex max-w-7xl items-center justify-center gap-2">
+            <span className="rounded-full bg-white/20 px-2.5 py-0.5 text-[10px] font-extrabold uppercase">
+              {announcement.badge}
+            </span>
+            <span className="font-medium">{announcement.message}</span>
+            <Link to={announcement.linkUrl} className="font-extrabold underline hover:text-purple-200 ml-1">
+              {announcement.linkText} →
+            </Link>
+          </div>
+        </div>
+      )}
+
+      <header className="sticky top-0 z-40 border-b border-[#EDE9FE] bg-white/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-4 py-3.5 sm:px-6 lg:px-8">
         {/* Zone 1: Brand wordmark */}
         <Link
@@ -168,5 +186,6 @@ export function Header() {
         </div>
       )}
     </header>
+    </>
   );
 }

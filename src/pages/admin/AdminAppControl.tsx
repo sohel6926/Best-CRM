@@ -15,12 +15,21 @@ import {
 import { useAdmin } from '../../context/AdminContext';
 
 export function AdminAppControl() {
-  const { announcement, setAnnouncement, logAuditAction } = useAdmin();
+  const { announcement, setAnnouncement, siteConfig, updateSiteConfig, logAuditAction } = useAdmin();
   const [msg, setMsg] = useState(announcement.message);
   const [badge, setBadge] = useState(announcement.badge);
   const [linkText, setLinkText] = useState(announcement.linkText);
   const [linkUrl, setLinkUrl] = useState(announcement.linkUrl);
   const [savedBanner, setSavedBanner] = useState(false);
+
+  // Storefront Marketing Copy state
+  const [heroEyebrow, setHeroEyebrow] = useState(siteConfig.heroEyebrow);
+  const [heroTitle, setHeroTitle] = useState(siteConfig.heroTitle);
+  const [heroDescription, setHeroDescription] = useState(siteConfig.heroDescription);
+  const [supportPhone, setSupportPhone] = useState(siteConfig.supportPhone);
+  const [supportWhatsApp, setSupportWhatsApp] = useState(siteConfig.supportWhatsApp);
+  const [supportEmail, setSupportEmail] = useState(siteConfig.supportEmail);
+  const [savedSiteContent, setSavedSiteContent] = useState(false);
 
   // Campaign simulator
   const [campaignChannel, setCampaignChannel] = useState<'push' | 'whatsapp' | 'email'>('whatsapp');
@@ -42,6 +51,20 @@ export function AdminAppControl() {
     logAuditAction(`Updated website announcement banner: "${msg}"`);
     setSavedBanner(true);
     setTimeout(() => setSavedBanner(false), 3000);
+  };
+
+  const handleSaveSiteContent = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateSiteConfig({
+      heroEyebrow,
+      heroTitle,
+      heroDescription,
+      supportPhone,
+      supportWhatsApp,
+      supportEmail,
+    });
+    setSavedSiteContent(true);
+    setTimeout(() => setSavedSiteContent(false), 3000);
   };
 
   const handleSendBroadcast = (e: React.FormEvent) => {
@@ -142,6 +165,95 @@ export function AdminAppControl() {
               className="rounded-xl bg-[#5B21B6] px-5 py-2 text-xs font-bold text-white hover:bg-[#4C1D95] cursor-pointer"
             >
               Publish Banner
+            </button>
+          </div>
+        </form>
+      </div>
+
+      {/* Storefront Website Content & Contact Information Editor */}
+      <div className="rounded-2xl border border-[#EDE9FE] bg-white p-6 shadow-xs space-y-5">
+        <div className="border-b border-[#F3EEFF] pb-4">
+          <h2 className="text-base font-bold text-[#1E1B4B]">Storefront Content & Contact Details</h2>
+          <p className="text-xs text-[#64748B]">
+            Edit the public website hero title, description, support phone, and WhatsApp contact in real time.
+          </p>
+        </div>
+
+        {savedSiteContent && (
+          <p className="text-xs font-bold text-green-600 flex items-center gap-1">
+            <CheckCircle2 className="h-3.5 w-3.5" /> Storefront content updated and saved across all visitor pages!
+          </p>
+        )}
+
+        <form onSubmit={handleSaveSiteContent} className="grid grid-cols-1 gap-4 sm:grid-cols-2 text-xs">
+          <div>
+            <label className="font-semibold text-gray-700">Hero Section Eyebrow</label>
+            <input
+              type="text"
+              value={heroEyebrow}
+              onChange={(e) => setHeroEyebrow(e.target.value)}
+              className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2 text-xs text-[#1E1B4B]"
+            />
+          </div>
+
+          <div>
+            <label className="font-semibold text-gray-700">Support Phone</label>
+            <input
+              type="text"
+              value={supportPhone}
+              onChange={(e) => setSupportPhone(e.target.value)}
+              className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2 text-xs text-[#1E1B4B]"
+            />
+          </div>
+
+          <div className="sm:col-span-2">
+            <label className="font-semibold text-gray-700">Main Hero Headline</label>
+            <input
+              type="text"
+              required
+              value={heroTitle}
+              onChange={(e) => setHeroTitle(e.target.value)}
+              className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+            />
+          </div>
+
+          <div className="sm:col-span-2">
+            <label className="font-semibold text-gray-700">Hero Subtitle / Description</label>
+            <textarea
+              rows={2}
+              required
+              value={heroDescription}
+              onChange={(e) => setHeroDescription(e.target.value)}
+              className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2.5 text-xs text-[#1E1B4B]"
+            />
+          </div>
+
+          <div>
+            <label className="font-semibold text-gray-700">WhatsApp Number</label>
+            <input
+              type="text"
+              value={supportWhatsApp}
+              onChange={(e) => setSupportWhatsApp(e.target.value)}
+              className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2 text-xs text-[#1E1B4B]"
+            />
+          </div>
+
+          <div>
+            <label className="font-semibold text-gray-700">Support Email</label>
+            <input
+              type="email"
+              value={supportEmail}
+              onChange={(e) => setSupportEmail(e.target.value)}
+              className="mt-1 w-full rounded-xl border border-[#EDE9FE] bg-[#FAF8FF] p-2 text-xs text-[#1E1B4B]"
+            />
+          </div>
+
+          <div className="sm:col-span-2 flex justify-end">
+            <button
+              type="submit"
+              className="rounded-xl bg-[#5B21B6] px-5 py-2 text-xs font-bold text-white hover:bg-[#4C1D95] cursor-pointer"
+            >
+              Update Storefront Content
             </button>
           </div>
         </form>

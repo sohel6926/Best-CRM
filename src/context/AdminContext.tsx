@@ -129,6 +129,29 @@ export interface WebsiteAnnouncement {
   theme: 'purple' | 'green' | 'amber';
 }
 
+export interface BranchItem {
+  id: string;
+  name: string;
+  brand: string;
+  type: string;
+  gstin: string;
+  fssaiNumber: string;
+  manager: string;
+  phone: string;
+  address: string;
+  capacityPerDay: string;
+  status: 'Active' | 'Under Audit';
+}
+
+export interface SiteConfig {
+  heroEyebrow: string;
+  heroTitle: string;
+  heroDescription: string;
+  supportPhone: string;
+  supportEmail: string;
+  supportWhatsApp: string;
+}
+
 // ----------------------------------------------------
 // Initial Mock Data
 // ----------------------------------------------------
@@ -539,6 +562,70 @@ const INITIAL_ANNOUNCEMENT: WebsiteAnnouncement = {
   theme: 'purple',
 };
 
+const INITIAL_BRANCHES: BranchItem[] = [
+  {
+    id: 'BR-01',
+    name: 'Madhapur Mega Base Kitchen & Warehousing',
+    brand: 'Swastik Grand Catering & BestCRM Labs',
+    type: 'Central Base Kitchen',
+    gstin: '36AAACB1234F1Z1',
+    fssaiNumber: '13624014000321',
+    manager: 'Chef K. Venkatesh Rao',
+    phone: '+91 98490 22110',
+    address: 'Plot 42, Silicon Valley Layout, Madhapur, Hyderabad - 500081',
+    capacityPerDay: '3,500 Plates / Shift',
+    status: 'Active',
+  },
+  {
+    id: 'BR-02',
+    name: 'Financial District Corporate Tiffin Depot',
+    brand: 'LunchBox OS Corporate Express',
+    type: 'Cloud Kitchen & Depot',
+    gstin: '36AAACB1234F1Z1',
+    fssaiNumber: '13624014000455',
+    manager: 'Syed Imran (Logistics Lead)',
+    phone: '+91 99891 44220',
+    address: 'Nanakramguda Hub, Opp WaveRock, Gachibowli - 500032',
+    capacityPerDay: '800 Tiffins / Day',
+    status: 'Active',
+  },
+  {
+    id: 'BR-03',
+    name: 'Banjara Hills Wedding Tasting Lounge',
+    brand: 'Swastik Royal Events Suite',
+    type: 'Retail Tasting Studio',
+    gstin: '36AAACB1234F1Z1',
+    fssaiNumber: '13624014000108',
+    manager: 'Lavanya Reddy (Events Consultant)',
+    phone: '+91 97001 88992',
+    address: 'Road No 12, Banjara Hills, Hyderabad - 500034',
+    capacityPerDay: '8 Tasting Sessions / Day',
+    status: 'Active',
+  },
+  {
+    id: 'BR-04',
+    name: 'Tenali & Guntur Spice Processing Mill',
+    brand: 'Swastik Andhra Karam & Pickles',
+    type: 'Regional Processing Center',
+    gstin: '37AAACB1234F1Z9',
+    fssaiNumber: '10123028000890',
+    manager: 'M. Sreeramulu',
+    phone: '+91 98852 33441',
+    address: 'Mandi Road, Tenali Rural, Andhra Pradesh - 522201',
+    capacityPerDay: '1,200 Kg Podi / Day',
+    status: 'Active',
+  },
+];
+
+const INITIAL_SITE_CONFIG: SiteConfig = {
+  heroEyebrow: 'All-in-One CRM Software Ecosystem',
+  heroTitle: 'Run Your Entire Business On One Platform',
+  heroDescription: 'Tailor-made CRM solutions with integrated billing, automated GST invoicing, customer WhatsApp engagement, and real-time operations tracking.',
+  supportPhone: '+91 98490 22110',
+  supportEmail: 'contact@bestcrm.in',
+  supportWhatsApp: '+919849022110',
+};
+
 // ----------------------------------------------------
 // Admin Context Definition
 // ----------------------------------------------------
@@ -548,6 +635,7 @@ interface AdminContextType {
   setRole: (r: AdminRole) => void;
   users: AdminUser[];
   addUser: (u: Omit<AdminUser, 'id' | 'joinedDate' | 'activityHistory'>) => void;
+  updateUser: (id: string, updatedFields: Partial<AdminUser>) => void;
   toggleUserStatus: (id: string) => void;
   deleteUser: (id: string) => void;
   transactions: SaleTransaction[];
@@ -571,6 +659,12 @@ interface AdminContextType {
   toggleCoupon: (code: string) => void;
   announcement: WebsiteAnnouncement;
   setAnnouncement: React.Dispatch<React.SetStateAction<WebsiteAnnouncement>>;
+  branches: BranchItem[];
+  addBranch: (b: Omit<BranchItem, 'id'>) => void;
+  updateBranch: (id: string, updatedFields: Partial<BranchItem>) => void;
+  deleteBranch: (id: string) => void;
+  siteConfig: SiteConfig;
+  updateSiteConfig: (config: Partial<SiteConfig>) => void;
   auditLogs: AuditLogItem[];
   logAuditAction: (action: string) => void;
   // Dynamic Pricing Overrides for public site
@@ -673,6 +767,24 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     }
   });
 
+  const [branches, setBranches] = useState<BranchItem[]>(() => {
+    try {
+      const saved = localStorage.getItem('bestcrm_admin_branches');
+      return saved ? JSON.parse(saved) : INITIAL_BRANCHES;
+    } catch {
+      return INITIAL_BRANCHES;
+    }
+  });
+
+  const [siteConfig, setSiteConfig] = useState<SiteConfig>(() => {
+    try {
+      const saved = localStorage.getItem('bestcrm_admin_site_config');
+      return saved ? JSON.parse(saved) : INITIAL_SITE_CONFIG;
+    } catch {
+      return INITIAL_SITE_CONFIG;
+    }
+  });
+
   // Save to localStorage
   useEffect(() => {
     try {
@@ -686,10 +798,12 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem('bestcrm_admin_audit', JSON.stringify(auditLogs));
       localStorage.setItem('bestcrm_admin_announcement', JSON.stringify(announcement));
       localStorage.setItem('bestcrm_admin_custom_prices', JSON.stringify(customPlanPrices));
+      localStorage.setItem('bestcrm_admin_branches', JSON.stringify(branches));
+      localStorage.setItem('bestcrm_admin_site_config', JSON.stringify(siteConfig));
     } catch {
       // ignore
     }
-  }, [users, transactions, leads, tickets, rules, priceLogs, coupons, auditLogs, announcement, customPlanPrices]);
+  }, [users, transactions, leads, tickets, rules, priceLogs, coupons, auditLogs, announcement, customPlanPrices, branches, siteConfig]);
 
   const logAuditAction = (action: string) => {
     const item: AuditLogItem = {
@@ -712,6 +826,45 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     };
     setUsers((prev) => [newUser, ...prev]);
     logAuditAction(`Created new user account for ${u.businessName} (${u.name})`);
+  };
+
+  const updateUser = (id: string, updatedFields: Partial<AdminUser>) => {
+    setUsers((prev) =>
+      prev.map((u) => {
+        if (u.id === id) {
+          const updated = { ...u, ...updatedFields };
+          logAuditAction(`Updated user account details for ${updated.name} (${updated.businessName})`);
+          return updated;
+        }
+        return u;
+      })
+    );
+  };
+
+  const addBranch = (b: Omit<BranchItem, 'id'>) => {
+    const newBranch: BranchItem = {
+      ...b,
+      id: `BR-0${branches.length + 1}`,
+    };
+    setBranches((prev) => [...prev, newBranch]);
+    logAuditAction(`Added new branch location: ${b.name} (${b.type})`);
+  };
+
+  const updateBranch = (id: string, updatedFields: Partial<BranchItem>) => {
+    setBranches((prev) =>
+      prev.map((b) => (b.id === id ? { ...b, ...updatedFields } : b))
+    );
+    logAuditAction(`Updated branch details for #${id}`);
+  };
+
+  const deleteBranch = (id: string) => {
+    setBranches((prev) => prev.filter((b) => b.id !== id));
+    logAuditAction(`Deleted branch #${id}`);
+  };
+
+  const updateSiteConfig = (partial: Partial<SiteConfig>) => {
+    setSiteConfig((prev) => ({ ...prev, ...partial }));
+    logAuditAction('Updated storefront website content & contact settings');
   };
 
   const toggleUserStatus = (id: string) => {
@@ -876,6 +1029,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         setRole,
         users,
         addUser,
+        updateUser,
         toggleUserStatus,
         deleteUser,
         transactions,
@@ -899,6 +1053,12 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         toggleCoupon,
         announcement,
         setAnnouncement,
+        branches,
+        addBranch,
+        updateBranch,
+        deleteBranch,
+        siteConfig,
+        updateSiteConfig,
         auditLogs,
         logAuditAction,
         customPlanPrices,

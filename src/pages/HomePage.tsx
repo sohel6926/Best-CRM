@@ -11,6 +11,7 @@ import {
   WHY_CHOOSE_ITEMS,
 } from '../data/content';
 import { useApp } from '../context/AppContext';
+import { useAdmin } from '../context/AdminContext';
 import {
   CrmIcon,
   getPastelCardClasses,
@@ -27,6 +28,11 @@ import {
 export function HomePage() {
   const navigate = useNavigate();
   const { openDemoModal } = useApp();
+  const { siteConfig } = useAdmin();
+
+  const heroEyebrow = siteConfig.heroEyebrow || HERO_CONTENT.eyebrow;
+  const heroTitle = siteConfig.heroTitle || HERO_CONTENT.title;
+  const heroDescription = siteConfig.heroDescription || HERO_CONTENT.description;
 
   return (
     <div>
@@ -47,15 +53,15 @@ export function HomePage() {
             <div className="lg:col-span-6 hero-entrance">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-[#DDD6FE] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#5B21B6] shadow-xs">
                 <Sparkles className="h-3.5 w-3.5 text-[#7C3AED]" aria-hidden="true" />
-                {HERO_CONTENT.eyebrow}
+                {heroEyebrow}
               </span>
 
               <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-[#1E1B4B] sm:text-5xl lg:text-[52px] lg:leading-[1.12] [text-wrap:balance]">
-                {HERO_CONTENT.title}
+                {heroTitle}
               </h1>
 
               <p className="mt-5 max-w-xl text-base leading-relaxed text-[#475569] sm:text-lg">
-                {HERO_CONTENT.description}
+                {heroDescription}
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-3.5">
