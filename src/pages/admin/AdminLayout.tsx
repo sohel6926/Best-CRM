@@ -23,7 +23,6 @@ import {
   Trophy,
   Building2,
   FileSpreadsheet,
-  Bot,
   History,
 } from 'lucide-react';
 import { BrandLogo } from '../../components/BrandLogo';
@@ -41,13 +40,13 @@ import { AdminSettings } from './AdminSettings';
 import { AdminTargets } from './AdminTargets';
 import { AdminBranches } from './AdminBranches';
 import { AdminExcelImport } from './AdminExcelImport';
-import { AdminAgents } from './AdminAgents';
 import { AdminAuditHistory } from './AdminAuditHistory';
 import { CRM_PRODUCTS } from '../../data/content';
 
 export function AdminLayout() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentTab = searchParams.get('tab') || 'dashboard';
+  const rawTab = searchParams.get('tab') || 'dashboard';
+  const currentTab = rawTab === 'agents' ? 'dashboard' : rawTab;
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const { role, setRole, leads, tickets } = useAdmin();
@@ -85,7 +84,6 @@ export function AdminLayout() {
       items: [
         { id: 'branches', label: 'Branches & Brands', icon: Building2 },
         { id: 'excel_import', label: 'Excel Import', icon: FileSpreadsheet },
-        { id: 'agents', label: 'AI WhatsApp Bots', icon: Bot },
         { id: 'audit', label: 'Change History', icon: History },
         { id: 'support', label: 'Support Desk', icon: LifeBuoy, badge: openTicketsCount },
         { id: 'app_control', label: 'Website Control', icon: Sliders },
@@ -362,7 +360,6 @@ export function AdminLayout() {
           {currentTab === 'simulation' && <AdminPricingSimulation />}
           {currentTab === 'branches' && <AdminBranches />}
           {currentTab === 'excel_import' && <AdminExcelImport />}
-          {currentTab === 'agents' && <AdminAgents />}
           {currentTab === 'audit' && <AdminAuditHistory />}
           {currentTab === 'app_control' && <AdminAppControl />}
           {currentTab === 'settings' && <AdminSettings />}
