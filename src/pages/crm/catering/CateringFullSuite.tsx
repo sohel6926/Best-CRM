@@ -37,7 +37,7 @@ export type CateringSubPage =
   | 'vehicles'
   | 'staff';
 
-export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({ onNotify }) => {
+export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner?: React.ReactNode; statusNotification?: React.ReactNode }> = ({ onNotify, banner, statusNotification }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const validTabs: CateringSubPage[] = [
@@ -89,7 +89,7 @@ export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void }> =
   const currentNav = allItems.find(n => n.id === activeSubPage) || allItems[0];
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 items-start">
+    <div className="flex flex-col lg:flex-row flex-1 w-full min-h-[calc(100vh-57px)]">
       {/* Mobile-Only Navigation Bar & Quick Tabs */}
       <div className="lg:hidden w-full space-y-2.5">
         <div className="flex items-center justify-between bg-white p-3 rounded-2xl border border-[#E2E8F0] shadow-xs">
@@ -223,8 +223,8 @@ export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void }> =
         </div>
       )}
 
-      {/* Desktop Left Navigation Sidebar */}
-      <aside className="hidden lg:block lg:w-72 shrink-0 bg-white rounded-2xl border border-[#E2E8F0] p-4 shadow-xs space-y-4 lg:sticky lg:top-20">
+      {/* Desktop Left Navigation Sidebar - Docked to left edge like Admin Panel */}
+      <aside className="hidden lg:block w-64 lg:w-72 shrink-0 border-r border-[#E2E8F0] bg-white p-4 space-y-4 lg:sticky lg:top-[57px] h-[calc(100vh-57px)] overflow-y-auto">
         <div className="pb-3 border-b border-gray-100 flex items-center justify-between">
           <div>
             <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#5B21B6]">Catering Suite</span>
@@ -312,7 +312,10 @@ export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void }> =
       </aside>
 
       {/* Right Main Content Area for the Active Page */}
-      <div className="flex-1 min-w-0 w-full space-y-4">
+      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-6 space-y-5">
+        {banner}
+        {statusNotification}
+
         {/* Active Page Header Breadcrumb */}
         <div className="bg-white rounded-2xl px-5 py-3 border border-[#E2E8F0] shadow-2xs flex flex-col sm:flex-row justify-between sm:items-center gap-2">
           <div className="flex items-center gap-2 text-xs text-[#64748B]">
@@ -346,7 +349,7 @@ export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void }> =
           {activeSubPage === 'vehicles' && <CateringVehicles onNotify={onNotify} />}
           {activeSubPage === 'staff' && <CateringStaff onNotify={onNotify} />}
         </div>
-      </div>
+      </main>
     </div>
   );
 };

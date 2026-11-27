@@ -27,7 +27,7 @@ export type LunchSubPage =
   | 'feedback' 
   | 'inventory';
 
-export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({ onNotify }) => {
+export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner?: React.ReactNode; statusNotification?: React.ReactNode }> = ({ onNotify, banner, statusNotification }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const validTabs: LunchSubPage[] = [
@@ -57,7 +57,7 @@ export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({
   const currentNav = navigationItems.find(n => n.id === activeSubPage) || navigationItems[0];
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 items-start">
+    <div className="flex flex-col lg:flex-row flex-1 w-full min-h-[calc(100vh-57px)]">
       {/* Mobile-Only Navigation Bar & Quick Tabs */}
       <div className="lg:hidden w-full space-y-2.5">
         <div className="flex items-center justify-between bg-white p-3 rounded-2xl border border-[#E2E8F0] shadow-xs">
@@ -183,8 +183,8 @@ export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({
         </div>
       )}
 
-      {/* Left Navigation Sidebar - Styled exactly like the Admin Panel */}
-      <aside className="hidden lg:block lg:w-72 shrink-0 bg-white rounded-2xl border border-[#E2E8F0] p-4 shadow-xs space-y-4 lg:sticky lg:top-20">
+      {/* Left Navigation Sidebar - Docked to left edge like Admin Panel */}
+      <aside className="hidden lg:block w-64 lg:w-72 shrink-0 border-r border-[#E2E8F0] bg-white p-4 space-y-4 lg:sticky lg:top-[57px] h-[calc(100vh-57px)] overflow-y-auto">
         <div className="pb-3 border-b border-gray-100 flex items-center justify-between">
           <div>
             <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#5B21B6]">Lunch Box OS</span>
@@ -267,7 +267,10 @@ export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({
       </aside>
 
       {/* Main Content Pane */}
-      <main className="flex-1 min-w-0 space-y-4">
+      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-6 space-y-5">
+        {banner}
+        {statusNotification}
+
         {/* Breadcrumb Header */}
         <div className="bg-white rounded-2xl border border-[#E2E8F0] px-5 py-3 shadow-xs flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs">
