@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import {
-  ArrowLeft,
   CheckCircle2,
   Printer,
 } from 'lucide-react';
@@ -15,15 +14,28 @@ import { KaramFullSuite } from './karam-podi/KaramFullSuite';
 import { PickleFullSuite } from './pickles/PickleFullSuite';
 import { LunchFullSuite } from './lunch-box/LunchFullSuite';
 
-export function CrmWorkspacePage() {
+export const CRM_ROUTE_MAP: Record<string, string> = {
+  'catering-crm': 'catering-crm',
+  'hostel-crm': 'hostel-crm',
+  'hotel-crm': 'hotel-crm',
+  'karampodi-crm': 'karam-podi-crm',
+  'karam-podi-crm': 'karam-podi-crm',
+  'picklesales-crm': 'pickles-sales-crm',
+  'pickle-sales-crm': 'pickles-sales-crm',
+  'pickles-sales-crm': 'pickles-sales-crm',
+  'lunchboxes-crm': 'lunch-box-crm',
+  'lunch-boxes-crm': 'lunch-box-crm',
+  'lunch-box-crm': 'lunch-box-crm',
+};
+
+export function CrmWorkspacePage({ fixedCrmId }: { fixedCrmId?: string } = {}) {
   const { crmId } = useParams<{ crmId: string }>();
+  const { pathname } = useLocation();
 
-  // If user visits /app without a crmId, redirect to default catering-crm
-  if (!crmId) {
-    return <Navigate to="/app/catering-crm" replace />;
-  }
-
-  const selectedCrmId = crmId;
+  // Resolve target CRM ID from prop, param, or pathname
+  const pathKey = pathname.replace(/^\//, '').split('?')[0].split('/')[0];
+  const targetId = fixedCrmId || (crmId ? CRM_ROUTE_MAP[crmId] || crmId : CRM_ROUTE_MAP[pathKey] || 'catering-crm');
+  const selectedCrmId = CRM_ROUTE_MAP[targetId] || targetId;
   const currentCrm = CRM_PRODUCTS.find((c) => c.id === selectedCrmId) || CRM_PRODUCTS[0];
 
   const [statusNotification, setStatusNotification] = useState<string | null>(null);
@@ -35,63 +47,28 @@ export function CrmWorkspacePage() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-[#1E293B]">
-      {/* Top Workspace Bar */}
-      <header className="sticky top-0 z-40 border-b border-[#E2E8F0] bg-white/95 px-3 py-2.5 backdrop-blur-md sm:px-6 sm:py-3 shadow-2xs">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-          {/* Top row on mobile / Left group on desktop */}
-          <div className="flex items-center justify-between gap-3">
+      {/* Top Workspace Bar - Standalone Isolated Header (No cross-links) */}
+      <header className="sticky top-0 z-40 border-b border-[#E2E8F0] bg-white/95 px-4 py-3 backdrop-blur-md sm:px-6 shadow-2xs">
+        <div className="mx-auto flex max-w-7xl items-center justify-between">
+          {/* Left: CRM Brand Logo & Name */}
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#EDE9FE] text-[#5B21B6] border border-purple-200">
+              <CrmIcon name={currentCrm.icon} className="h-5 w-5" />
+            </div>
             <div className="flex items-center gap-2">
-              <Link
-                to="/admin"
-                className="inline-flex items-center gap-1.5 rounded-xl border border-[#CBD5E1] bg-white px-3 py-1.5 text-xs font-bold text-[#475569] shadow-xs hover:bg-[#F1F5F9] transition shrink-0"
-              >
-                <ArrowLeft className="h-3.5 w-3.5" />
-                <span>Admin Panel</span>
-              </Link>
-            </div>
-
-            <div className="flex items-center gap-2 sm:hidden">
-              <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-[10px] font-bold text-green-800">
-                ● Live
+              <span className="font-extrabold text-sm sm:text-base text-[#1E1B4B]">{currentCrm.name}</span>
+              <span className="hidden sm:inline-block rounded-md bg-purple-50 px-2 py-0.5 text-[10px] font-extrabold text-[#5B21B6] border border-purple-200">
+                CLIENT WORKSPACE
               </span>
-              <Link
-                to="/"
-                className="text-xs font-bold text-[#5B21B6] hover:underline"
-              >
-                Website →
-              </Link>
             </div>
           </div>
 
-          {/* Quick CRM Switcher - Horizontal smooth swipe on mobile */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 -mx-1 px-1 sm:mx-0 sm:px-0">
-            {CRM_PRODUCTS.map((crm) => (
-              <Link
-                key={crm.id}
-                to={`/app/${crm.id}`}
-                className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold whitespace-nowrap transition cursor-pointer shrink-0 ${
-                  selectedCrmId === crm.id
-                    ? 'bg-[#5B21B6] text-white shadow-xs'
-                    : 'bg-[#F1F5F9] text-[#475569] hover:bg-[#E2E8F0]'
-                }`}
-              >
-                <CrmIcon name={crm.icon} className="h-3.5 w-3.5" />
-                <span>{crm.name}</span>
-              </Link>
-            ))}
-          </div>
-
-          {/* Right group on desktop */}
-          <div className="hidden sm:flex items-center gap-3 shrink-0">
-            <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-0.5 text-[11px] font-bold text-green-800">
-              ● Live Client Workspace
+          {/* Right: Clean Live Status Indicator */}
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-700">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Live Client Workspace</span>
             </span>
-            <Link
-              to="/"
-              className="text-xs font-bold text-[#5B21B6] hover:underline"
-            >
-              Public Website →
-            </Link>
           </div>
         </div>
       </header>

@@ -43,6 +43,15 @@ import { AdminExcelImport } from './AdminExcelImport';
 import { AdminAuditHistory } from './AdminAuditHistory';
 import { CRM_PRODUCTS } from '../../data/content';
 
+const STANDALONE_CRM_URLS: Record<string, string> = {
+  'catering-crm': '/catering-crm',
+  'hostel-crm': '/hostel-crm',
+  'hotel-crm': '/hotel-crm',
+  'karam-podi-crm': '/karampodi-crm',
+  'pickles-sales-crm': '/picklesales-crm',
+  'lunch-box-crm': '/lunchboxes-crm',
+};
+
 export function AdminLayout() {
   const [searchParams, setSearchParams] = useSearchParams();
   const rawTab = searchParams.get('tab') || 'dashboard';
@@ -118,7 +127,7 @@ export function AdminLayout() {
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Direct Link to Launch the 6 Industry CRMs */}
             <Link
-              to="/app/catering-crm"
+              to="/catering-crm"
               className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl border border-[#DDD6FE] bg-[#FAF8FF] px-2 sm:px-3 py-1.5 text-[11px] sm:text-xs font-bold text-[#5B21B6] hover:bg-[#F3EEFF] transition shrink-0"
             >
               <Layers className="h-3.5 w-3.5" />
@@ -312,7 +321,7 @@ export function AdminLayout() {
                   Test the actual day-to-day software for catering, hostels, hotels, spices, etc.
                 </p>
                 <Link
-                  to="/app/catering-crm"
+                  to="/catering-crm"
                   className="flex items-center justify-between text-xs font-bold text-[#5B21B6] hover:underline pt-1"
                 >
                   <span>Open Workspaces</span>
@@ -387,7 +396,7 @@ export function AdminLayout() {
                     </div>
 
                     <Link
-                      to={`/app/${crm.id}`}
+                      to={STANDALONE_CRM_URLS[crm.id] || '/catering-crm'}
                       className="mt-6 inline-flex items-center justify-center gap-1.5 rounded-xl bg-[#5B21B6] px-4 py-2 text-xs font-bold text-white hover:bg-[#4C1D95]"
                     >
                       <span>Launch {crm.name}</span>

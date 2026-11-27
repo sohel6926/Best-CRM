@@ -30,15 +30,53 @@ function ScrollToTop() {
   return null;
 }
 
+const STANDALONE_CRM_ROUTES = [
+  '/catering-crm',
+  '/hostel-crm',
+  '/hotel-crm',
+  '/karampodi-crm',
+  '/karam-podi-crm',
+  '/picklesales-crm',
+  '/pickle-sales-crm',
+  '/pickles-sales-crm',
+  '/lunchboxes-crm',
+  '/lunch-boxes-crm',
+  '/lunch-box-crm',
+];
+
 function AppContent() {
   const { pathname } = useLocation();
-  const isAdminOrAppRoute = pathname.startsWith('/admin') || pathname.startsWith('/app');
+  const isAdminRoute = pathname.startsWith('/admin');
+  const isCrmRoute =
+    pathname.startsWith('/app') ||
+    STANDALONE_CRM_ROUTES.some((r) => pathname === r || pathname.startsWith(r + '/'));
 
-  if (isAdminOrAppRoute) {
+  if (isAdminRoute) {
     return (
       <Routes>
         <Route path="/admin/*" element={<AdminLayout />} />
         <Route path="/admin" element={<AdminLayout />} />
+      </Routes>
+    );
+  }
+
+  if (isCrmRoute) {
+    return (
+      <Routes>
+        {/* Dedicated Standalone CRM URLs */}
+        <Route path="/catering-crm" element={<CrmWorkspacePage fixedCrmId="catering-crm" />} />
+        <Route path="/hostel-crm" element={<CrmWorkspacePage fixedCrmId="hostel-crm" />} />
+        <Route path="/hotel-crm" element={<CrmWorkspacePage fixedCrmId="hotel-crm" />} />
+        <Route path="/karampodi-crm" element={<CrmWorkspacePage fixedCrmId="karam-podi-crm" />} />
+        <Route path="/karam-podi-crm" element={<CrmWorkspacePage fixedCrmId="karam-podi-crm" />} />
+        <Route path="/picklesales-crm" element={<CrmWorkspacePage fixedCrmId="pickles-sales-crm" />} />
+        <Route path="/pickle-sales-crm" element={<CrmWorkspacePage fixedCrmId="pickles-sales-crm" />} />
+        <Route path="/pickles-sales-crm" element={<CrmWorkspacePage fixedCrmId="pickles-sales-crm" />} />
+        <Route path="/lunchboxes-crm" element={<CrmWorkspacePage fixedCrmId="lunch-box-crm" />} />
+        <Route path="/lunch-boxes-crm" element={<CrmWorkspacePage fixedCrmId="lunch-box-crm" />} />
+        <Route path="/lunch-box-crm" element={<CrmWorkspacePage fixedCrmId="lunch-box-crm" />} />
+
+        {/* Generic & Legacy /app routes */}
         <Route path="/app/:crmId" element={<CrmWorkspacePage />} />
         <Route path="/app" element={<CrmWorkspacePage />} />
       </Routes>

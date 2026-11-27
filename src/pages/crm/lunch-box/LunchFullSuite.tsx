@@ -118,7 +118,7 @@ export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({
             <div className="space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-gray-100">
                 <div>
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#5B21B6]">Lunch Box OS</span>
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#5B21B6]">Lunch Boxes OS</span>
                   <h3 className="font-extrabold text-sm text-[#1E1B4B]">Navigation Menu</h3>
                 </div>
                 <button
@@ -271,7 +271,7 @@ export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = ({
         {/* Breadcrumb Header */}
         <div className="bg-white rounded-2xl border border-[#E2E8F0] px-5 py-3 shadow-xs flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs">
-            <span className="font-bold text-gray-500">Lunch Box OS</span>
+            <span className="font-bold text-gray-500">Lunch Boxes OS</span>
             <ChevronRight className="h-3.5 w-3.5 text-gray-400" />
             <span className="font-extrabold text-[#5B21B6]">{currentNav.label}</span>
           </div>

@@ -661,7 +661,7 @@ export const CRM_PRODUCTS: CrmProduct[] = [
   },
   {
     id: 'pickles-sales-crm',
-    name: 'Pickles Sales CRM',
+    name: 'Pickle Sales CRM',
     shortDesc:
       'Manage pickle varieties, orders, bulk and retail customers, stock, dispatch and follow-ups.',
     fullDesc:
@@ -779,7 +779,7 @@ export const CRM_PRODUCTS: CrmProduct[] = [
   },
   {
     id: 'lunch-box-crm',
-    name: 'Lunch Box CRM',
+    name: 'Lunch Boxes CRM',
     shortDesc:
       'Manage daily and monthly lunch subscribers, menus, delivery routes, pauses and payments.',
     fullDesc:

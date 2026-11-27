@@ -266,7 +266,7 @@ export const PickleFullSuite: React.FC<{ onNotify?: (msg: string) => void }> = (
         {/* Dynamic Breadcrumb Header */}
         <div className="bg-white rounded-2xl px-5 py-3 border border-[#E2E8F0] shadow-2xs flex flex-col sm:flex-row justify-between sm:items-center gap-2">
           <div className="flex items-center gap-2 text-xs text-[#64748B]">
-            <span>Pickles Sales CRM</span>
+            <span>Pickle Sales CRM</span>
             <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
             <span className="font-bold text-[#5B21B6]">{currentNav.label}</span>
           </div>
