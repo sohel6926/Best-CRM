@@ -43,8 +43,9 @@ export function SeoHead() {
       }
     };
 
-    const origin = window.location.origin;
+    const origin = (typeof window !== 'undefined' && window.location.origin) ? window.location.origin : 'https://bestcrm-blue.vercel.app';
     const fullOgImage = `${origin}/og-image.png`;
+    const fullOgLogo = `${origin}/og-logo.png`;
     const canonicalUrl = `${origin}${pathname}`;
 
     updateMeta('meta[name="title"]', meta.title);
