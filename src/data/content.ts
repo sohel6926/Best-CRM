@@ -1262,4 +1262,66 @@ export const PAGE_SEO: Record<string, { title: string; description: string }> = 
     description:
       'Review the terms and conditions for using bestCRM software and services.',
   },
+  // Dedicated CRM Workspaces
+  '/catering-crm': {
+    title: 'Catering CRM — Functions, Menu & Plate Schedule | bestCRM',
+    description:
+      'Catering management system for wedding orders, plate counts, muhurtham schedules, menu packages, and client contracts.',
+  },
+  '/hostel-crm': {
+    title: 'Hostel CRM — Rooms, Beds & Resident Operations | bestCRM',
+    description:
+      'Hostel and PG management workspace for room allocations, bed occupancy, rent collection, and student complaints.',
+  },
+  '/hotel-crm': {
+    title: 'Hotel CRM — Front Desk, Check-In & Guest Folios | bestCRM',
+    description:
+      'Hotel management software for room inventory, express guest check-ins, tariffs, and restaurant billing.',
+  },
+  '/karampodi-crm': {
+    title: 'Karam Podi CRM — Roasting Batches & Milling Moisture Log | bestCRM',
+    description:
+      'Artisanal spice and gunpowder podi batch tracking, roasting temperature logs, moisture QA, and distributor orders.',
+  },
+  '/karam-podi-crm': {
+    title: 'Karam Podi CRM — Roasting Batches & Milling Moisture Log | bestCRM',
+    description:
+      'Artisanal spice and gunpowder podi batch tracking, roasting temperature logs, moisture QA, and distributor orders.',
+  },
+  '/picklesales-crm': {
+    title: 'Pickle Sales CRM — Bharani Jaadi Curing & Fermentation | bestCRM',
+    description:
+      'Traditional Indian pickle manufacturing CRM for ceramic jaadi aging, oil levels, shelf-life pH monitoring, and retail orders.',
+  },
+  '/pickle-sales-crm': {
+    title: 'Pickle Sales CRM — Bharani Jaadi Curing & Fermentation | bestCRM',
+    description:
+      'Traditional Indian pickle manufacturing CRM for ceramic jaadi aging, oil levels, shelf-life pH monitoring, and retail orders.',
+  },
+  '/pickles-sales-crm': {
+    title: 'Pickle Sales CRM — Bharani Jaadi Curing & Fermentation | bestCRM',
+    description:
+      'Traditional Indian pickle manufacturing CRM for ceramic jaadi aging, oil levels, shelf-life pH monitoring, and retail orders.',
+  },
+  '/lunchboxes-crm': {
+    title: 'Lunch Boxes CRM — Kitchen Production Manifest & Routes | bestCRM',
+    description:
+      'Dabba and corporate lunch subscription CRM for automated meal splits, roti counts, dispatch routes, and kitchen manifests.',
+  },
+  '/lunch-boxes-crm': {
+    title: 'Lunch Boxes CRM — Kitchen Production Manifest & Routes | bestCRM',
+    description:
+      'Dabba and corporate lunch subscription CRM for automated meal splits, roti counts, dispatch routes, and kitchen manifests.',
+  },
+  '/lunch-box-crm': {
+    title: 'Lunch Boxes CRM — Kitchen Production Manifest & Routes | bestCRM',
+    description:
+      'Dabba and corporate lunch subscription CRM for automated meal splits, roti counts, dispatch routes, and kitchen manifests.',
+  },
+  // Admin Panel
+  '/admin': {
+    title: 'Admin Panel — Business & Platform Control | bestCRM',
+    description:
+      'Super Admin and Management console for bestCRM accounts, subscriptions, branches, and platform control.',
+  },
 };
