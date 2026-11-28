@@ -71,32 +71,32 @@ export function AdminLayout() {
 
   const navSections = [
     {
-      title: 'Targets & Growth',
+      title: 'Growth',
       items: [
         { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-        { id: 'targets', label: 'Targets & Goals', icon: Trophy },
-        { id: 'leads', label: 'Leads & Enquiries', icon: Target, badge: pendingLeadsCount },
+        { id: 'targets', label: 'Targets', icon: Trophy },
+        { id: 'leads', label: 'Leads', icon: Target, badge: pendingLeadsCount },
         { id: 'users', label: 'Users', icon: Users },
       ],
     },
     {
-      title: 'Commercial & Financials',
+      title: 'Financials',
       items: [
-        { id: 'sales', label: 'Sales & GST', icon: BarChart3 },
-        { id: 'plans', label: 'Plans & Pricing', icon: CreditCard },
+        { id: 'sales', label: 'Sales', icon: BarChart3 },
+        { id: 'plans', label: 'Pricing', icon: CreditCard },
         { id: 'dynamic_pricing', label: 'Dynamic Pricing', icon: Zap },
         { id: 'simulation', label: 'Price Simulation', icon: TrendingUp },
       ],
     },
     {
-      title: 'Setup & Operations',
+      title: 'Operations',
       items: [
-        { id: 'branches', label: 'Branches & Brands', icon: Building2 },
+        { id: 'branches', label: 'Branches', icon: Building2 },
         { id: 'excel_import', label: 'Excel Import', icon: FileSpreadsheet },
         { id: 'audit', label: 'Change History', icon: History },
         { id: 'support', label: 'Support Desk', icon: LifeBuoy, badge: openTicketsCount },
         { id: 'app_control', label: 'Website Control', icon: Sliders },
-        { id: 'settings', label: 'Security & Setup', icon: ShieldCheck },
+        { id: 'settings', label: 'Security', icon: ShieldCheck },
       ],
     },
   ];

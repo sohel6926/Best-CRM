@@ -50,14 +50,19 @@ export function SeoHead() {
     if (!meta && cleanPath.startsWith('/admin')) {
       const searchParams = new URLSearchParams(search);
       const tab = searchParams.get('tab');
-      let tabTitle = 'Business Control Center';
-      if (tab === 'users') tabTitle = 'Business Accounts';
-      else if (tab === 'pricing') tabTitle = 'Subscription Plans & Tariffs';
-      else if (tab === 'branches') tabTitle = 'Branches & Regional Hubs';
-      else if (tab === 'app-control') tabTitle = 'Storefront Website Control';
-      else if (tab === 'sales-gst') tabTitle = 'Sales & GST Compliance';
-      else if (tab === 'dynamic-pricing') tabTitle = 'Dynamic Pricing Engine';
-      else if (tab === 'security') tabTitle = 'Security & RBAC';
+      let tabTitle = 'Control Center';
+      if (tab === 'targets') tabTitle = 'Targets';
+      else if (tab === 'leads') tabTitle = 'Leads';
+      else if (tab === 'users') tabTitle = 'Users';
+      else if (tab === 'pricing' || tab === 'plans') tabTitle = 'Pricing';
+      else if (tab === 'sales' || tab === 'sales-gst') tabTitle = 'Sales';
+      else if (tab === 'branches') tabTitle = 'Branches';
+      else if (tab === 'app-control' || tab === 'app_control') tabTitle = 'Website Control';
+      else if (tab === 'dynamic-pricing' || tab === 'dynamic_pricing') tabTitle = 'Dynamic Pricing';
+      else if (tab === 'simulation') tabTitle = 'Price Simulation';
+      else if (tab === 'security' || tab === 'settings') tabTitle = 'Security';
+      else if (tab === 'support') tabTitle = 'Support Desk';
+      else if (tab === 'audit') tabTitle = 'Change History';
 
       meta = {
         title: `Admin Panel — ${tabTitle} | bestCRM`,
