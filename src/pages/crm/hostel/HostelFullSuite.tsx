@@ -41,7 +41,7 @@ export const HostelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banne
   };
 
   const navigationItems = [
-    { id: 'rooms', label: 'Rooms & Beds', icon: BedDouble, badge: '91% Full' },
+    { id: 'rooms', label: 'Rooms', icon: BedDouble, badge: '91% Full' },
     { id: 'residents', label: 'Residents', icon: Users, badge: '120 Active' },
     { id: 'billing', label: 'Rent', icon: CreditCard, badge: 'Due 5th' },
     { id: 'power', label: 'Electricity Bills', icon: Zap, badge: '₹11/unit' },

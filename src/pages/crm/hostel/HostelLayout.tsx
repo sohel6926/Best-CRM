@@ -49,14 +49,14 @@ export function HostelLayout() {
   };
 
   const navItems = [
-    { id: 'rooms', label: 'Rooms & Bed Matrix', icon: BedDouble, badge: '91% Full' },
-    { id: 'residents', label: 'Residents Directory & KYC', icon: Users, badge: '120 Active' },
+    { id: 'rooms', label: 'Rooms', icon: BedDouble, badge: '91% Full' },
+    { id: 'residents', label: 'Residents', icon: Users, badge: '120 Active' },
     { id: 'billing', label: 'Rent', icon: CreditCard, badge: 'Due 5th' },
-    { id: 'power', label: 'Sub-Meter Splitter', icon: Zap, badge: '₹11/unit' },
-    { id: 'mess', label: 'Mess & Meal Planner', icon: Utensils, badge: '7 Days' },
-    { id: 'gate-pass', label: 'Gate Pass & Curfew Log', icon: ShieldAlert, badge: '09:30 PM' },
+    { id: 'power', label: 'Electricity Bills', icon: Zap, badge: '₹11/unit' },
+    { id: 'mess', label: 'Mess', icon: Utensils, badge: '7 Days' },
+    { id: 'gate-pass', label: 'Gate Passes', icon: ShieldAlert, badge: '09:30 PM' },
     { id: 'deposits', label: 'Deposits', icon: ShieldCheck, badge: 'No Dues' },
-    { id: 'complaints', label: 'Maintenance Desk', icon: Wrench, badge: '2 Open' },
+    { id: 'complaints', label: 'Maintenance', icon: Wrench, badge: '2 Open' },
     { id: 'staff', label: 'Staff', icon: UserCog, badge: '5 Staff' },
   ];
 

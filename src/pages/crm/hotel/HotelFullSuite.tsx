@@ -46,7 +46,7 @@ export const HotelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
   const navigationItems = [
     { id: 'tape-chart', label: 'Calendar', icon: Building2, badge: '85% Full' },
     { id: 'check-in', label: 'Check-In', icon: UserCheck, badge: 'Verified' },
-    { id: 'dining-pos', label: 'Restaurant', icon: Utensils, badge: 'Live Orders' },
+    { id: 'dining-pos', label: 'Dining', icon: Utensils, badge: 'Live Orders' },
     { id: 'housekeeping', label: 'Housekeeping', icon: Sparkles, badge: 'Clean Desk' },
     { id: 'folio-billing', label: 'Billing', icon: FileText, badge: 'Split Bill' },
     { id: 'channel-manager', label: 'Rates', icon: Globe, badge: 'OTAs' },
