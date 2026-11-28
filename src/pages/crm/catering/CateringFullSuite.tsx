@@ -60,7 +60,7 @@ export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void; ban
         { id: 'events', label: 'Event Bookings', icon: Calendar, badge: '5 Booked' },
         { id: 'menus', label: 'Menu Packages', icon: Utensils, badge: '3 Packages' },
         { id: 'photos', label: 'Food Photos', icon: Camera, badge: 'Gallery' },
-        { id: 'muhurtham', label: 'Festivals & Dates', icon: Moon, badge: 'Panchangam' },
+        { id: 'muhurtham', label: 'Calendar', icon: Moon, badge: 'Dates' },
         { id: 'tasting', label: 'Food Tasting', icon: Sparkles, badge: '3 Sessions' },
       ],
     },
@@ -70,7 +70,7 @@ export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void; ban
         { id: 'invoices', label: 'Invoices', icon: FileText, badge: '20/50/30' },
         { id: 'costing', label: 'Plate Costing', icon: Calculator, badge: 'Profit Engine' },
         { id: 'expenses', label: 'Daily Expenses', icon: Receipt, badge: 'Petty Cash' },
-        { id: 'vendors', label: 'Vendors & Mandi', icon: Building2, badge: '5 Mandis' },
+        { id: 'vendors', label: 'Vendors', icon: Building2, badge: '5 Mandis' },
       ],
     },
     {

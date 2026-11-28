@@ -44,16 +44,16 @@ export const HotelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
   };
 
   const navigationItems = [
-    { id: 'tape-chart', label: 'Room Calendar', icon: Building2, badge: '85% Full' },
-    { id: 'check-in', label: 'Guest Check-In', icon: UserCheck, badge: 'Verified' },
-    { id: 'dining-pos', label: 'Restaurant Orders', icon: Utensils, badge: 'Live Orders' },
+    { id: 'tape-chart', label: 'Calendar', icon: Building2, badge: '85% Full' },
+    { id: 'check-in', label: 'Check-In', icon: UserCheck, badge: 'Verified' },
+    { id: 'dining-pos', label: 'Restaurant', icon: Utensils, badge: 'Live Orders' },
     { id: 'housekeeping', label: 'Housekeeping', icon: Sparkles, badge: 'Clean Desk' },
-    { id: 'folio-billing', label: 'Guest Billing', icon: FileText, badge: 'Split Bill' },
-    { id: 'channel-manager', label: 'Online Rates', icon: Globe, badge: 'OTAs' },
+    { id: 'folio-billing', label: 'Billing', icon: FileText, badge: 'Split Bill' },
+    { id: 'channel-manager', label: 'Rates', icon: Globe, badge: 'OTAs' },
     { id: 'banquets', label: 'Banquets', icon: Landmark, badge: '3 Halls' },
-    { id: 'concierge', label: 'Cab Booking', icon: Car, badge: 'Airport Cabs' },
-    { id: 'night-audit', label: 'Daily Closing', icon: Moon, badge: 'Day Summary' },
-    { id: 'inventory', label: 'Linen & Supplies', icon: Package, badge: 'Stockroom' },
+    { id: 'concierge', label: 'Cabs', icon: Car, badge: 'Airport Cabs' },
+    { id: 'night-audit', label: 'Closing', icon: Moon, badge: 'Day Summary' },
+    { id: 'inventory', label: 'Linen', icon: Package, badge: 'Stockroom' },
   ];
 
   const currentNav = navigationItems.find(n => n.id === activeSubPage) || navigationItems[0];

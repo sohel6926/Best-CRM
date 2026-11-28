@@ -42,11 +42,11 @@ export const PickleFullSuite: React.FC<{ onNotify?: (msg: string) => void; banne
   };
 
   const navigationItems = [
-    { id: 'curing', label: 'Jaadi Curing', icon: Layers, badge: '4 Bharanis' },
+    { id: 'curing', label: 'Curing', icon: Layers, badge: '4 Bharanis' },
     { id: 'inventory', label: 'Bottled Stock', icon: Package, badge: '8 SKUs' },
     { id: 'orders', label: 'Customer Orders', icon: ShoppingCart, badge: 'Live Orders' },
     { id: 'wholesale', label: 'Supermarket Khata', icon: Store, badge: '4 Chains' },
-    { id: 'procurement', label: 'Raw Oils & Mangoes', icon: ShoppingBag, badge: 'Nuzvid/Tenali' },
+    { id: 'procurement', label: 'Ingredients', icon: ShoppingBag, badge: 'Nuzvid/Tenali' },
     { id: 'non-veg', label: 'Non-Veg Kitchen', icon: Flame, badge: 'HACCP Safe' },
     { id: 'shipping', label: 'Glass Shipping', icon: Truck, badge: 'Delhivery' },
     { id: 'export', label: 'Export Orders', icon: Plane, badge: 'USA/UK/UAE' },

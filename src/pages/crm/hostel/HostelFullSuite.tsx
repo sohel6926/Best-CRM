@@ -47,7 +47,7 @@ export const HostelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banne
     { id: 'power', label: 'Electricity Bills', icon: Zap, badge: '₹11/unit' },
     { id: 'mess', label: 'Mess Menu', icon: Utensils, badge: '7 Days' },
     { id: 'gate-pass', label: 'Gate Passes', icon: ShieldAlert, badge: '09:30 PM' },
-    { id: 'deposits', label: 'Deposits & Dues', icon: ShieldCheck, badge: 'No Dues' },
+    { id: 'deposits', label: 'Deposits', icon: ShieldCheck, badge: 'No Dues' },
     { id: 'complaints', label: 'Maintenance', icon: Wrench, badge: '2 Open' },
     { id: 'staff', label: 'Staff', icon: UserCog, badge: '5 Staff' },
   ];

@@ -55,7 +55,7 @@ export function HostelLayout() {
     { id: 'power', label: 'Sub-Meter Splitter', icon: Zap, badge: '₹11/unit' },
     { id: 'mess', label: 'Mess & Meal Planner', icon: Utensils, badge: '7 Days' },
     { id: 'gate-pass', label: 'Gate Pass & Curfew Log', icon: ShieldAlert, badge: '09:30 PM' },
-    { id: 'deposits', label: 'Deposits & Move-Out', icon: ShieldCheck, badge: 'No Dues' },
+    { id: 'deposits', label: 'Deposits', icon: ShieldCheck, badge: 'No Dues' },
     { id: 'complaints', label: 'Maintenance Desk', icon: Wrench, badge: '2 Open' },
     { id: 'staff', label: 'Staff', icon: UserCog, badge: '5 Staff' },
   ];
