@@ -93,12 +93,54 @@ export function SeoHead() {
       }
     }
 
-    // 5. Fallback for actual 404 pages
+    // 5. Intelligent Fallback (Ensures no CRM or section ever shows "Page Not Found")
     if (!meta) {
-      meta = {
-        title: 'Page Not Found — bestCRM',
-        description: 'The requested page could not be found on bestCRM.',
-      };
+      if (cleanPath.includes('catering')) {
+        meta = {
+          title: 'Catering CRM — Functions, Menu & Events | bestCRM',
+          description: 'Catering management system for wedding orders, plate counts, muhurtham schedules, menu packages, and client contracts.',
+        };
+      } else if (cleanPath.includes('hostel')) {
+        meta = {
+          title: 'Hostel CRM — Rooms, Beds & Resident Operations | bestCRM',
+          description: 'Hostel and PG management workspace for room allocations, bed occupancy, rent collection, and resident complaints.',
+        };
+      } else if (cleanPath.includes('hotel')) {
+        meta = {
+          title: 'Hotel CRM — Front Desk, Check-In & Guest Folios | bestCRM',
+          description: 'Hotel management software for room inventory, express guest check-ins, tariffs, and restaurant billing.',
+        };
+      } else if (cleanPath.includes('karam') || cleanPath.includes('podi')) {
+        meta = {
+          title: 'Karam Podi CRM — Roasting Batches & Milling Moisture Log | bestCRM',
+          description: 'Artisanal spice and gunpowder podi batch tracking, roasting temperature logs, moisture QA, and distributor orders.',
+        };
+      } else if (cleanPath.includes('pickle')) {
+        meta = {
+          title: 'Pickle Sales CRM — Bharani Jaadi Curing & Fermentation | bestCRM',
+          description: 'Traditional Indian pickle manufacturing CRM for ceramic jaadi aging, oil levels, shelf-life pH monitoring, and retail orders.',
+        };
+      } else if (cleanPath.includes('lunch')) {
+        meta = {
+          title: 'Lunch Boxes CRM — Kitchen Production Manifest & Routes | bestCRM',
+          description: 'Dabba and corporate lunch subscription CRM for automated meal splits, roti counts, dispatch routes, and kitchen manifests.',
+        };
+      } else if (cleanPath.startsWith('/admin')) {
+        meta = {
+          title: 'Admin Panel — Control Center | bestCRM',
+          description: 'Super Admin and Management console for bestCRM accounts, subscriptions, branches, and platform control.',
+        };
+      } else if (cleanPath === '' || cleanPath === '/') {
+        meta = {
+          title: 'bestCRM — Ready-Made CRMs for Small Businesses',
+          description: 'Manage customers, sales, and daily operations with bestCRM. Ready-made CRMs for catering, hostels, hotels, karam podi, pickles, and lunch box businesses.',
+        };
+      } else {
+        meta = {
+          title: 'Page Not Found — bestCRM',
+          description: 'The requested page could not be found on bestCRM.',
+        };
+      }
     }
 
     // Update document title immediately

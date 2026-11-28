@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { 
   Layers, Package, ShoppingCart, Store, ShoppingBag, 
   Flame, Truck, Plane, BarChart3, ChevronRight, Printer,
-  Menu, X, ChevronDown
+  Menu, X, ChevronDown, FileText, Send
 } from 'lucide-react';
 import { PickleCuring } from './PickleCuring';
 import { PickleInventory } from './PickleInventory';
@@ -14,6 +14,9 @@ import { PickleNonVegKitchen } from './PickleNonVegKitchen';
 import { PickleShipping } from './PickleShipping';
 import { PickleExport } from './PickleExport';
 import { PickleAnalytics } from './PickleAnalytics';
+import { PickleCatalogue } from './PickleCatalogue';
+import { PickleBilling } from './PickleBilling';
+import { PickleMarketing } from './PickleMarketing';
 
 export type PickleSubPage = 
   | 'curing' 
@@ -24,14 +27,18 @@ export type PickleSubPage =
   | 'non-veg' 
   | 'shipping' 
   | 'export' 
-  | 'analytics';
+  | 'analytics'
+  | 'catalogue'
+  | 'billing'
+  | 'marketing';
 
 export const PickleFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner?: React.ReactNode; statusNotification?: React.ReactNode }> = ({ onNotify, banner, statusNotification }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const validTabs: PickleSubPage[] = [
     'curing', 'inventory', 'orders', 'wholesale', 'procurement', 
-    'non-veg', 'shipping', 'export', 'analytics'
+    'non-veg', 'shipping', 'export', 'analytics',
+    'catalogue', 'billing', 'marketing'
   ];
   const tabFromUrl = searchParams.get('tab') as PickleSubPage;
   const activeSubPage: PickleSubPage = validTabs.includes(tabFromUrl) ? tabFromUrl : 'curing';
@@ -43,14 +50,17 @@ export const PickleFullSuite: React.FC<{ onNotify?: (msg: string) => void; banne
 
   const navigationItems = [
     { id: 'curing', label: 'Curing', icon: Layers, badge: '4 Bharanis' },
-    { id: 'inventory', label: 'Bottled Stock', icon: Package, badge: '8 SKUs' },
-    { id: 'orders', label: 'Customer Orders', icon: ShoppingCart, badge: 'Live Orders' },
-    { id: 'wholesale', label: 'Supermarket Khata', icon: Store, badge: '4 Chains' },
+    { id: 'inventory', label: 'Stock', icon: Package, badge: '8 SKUs' },
+    { id: 'orders', label: 'Orders', icon: ShoppingCart, badge: 'Live Orders' },
+    { id: 'wholesale', label: 'Wholesale', icon: Store, badge: '4 Chains' },
     { id: 'procurement', label: 'Ingredients', icon: ShoppingBag, badge: 'Nuzvid/Tenali' },
-    { id: 'non-veg', label: 'Non-Veg Kitchen', icon: Flame, badge: 'HACCP Safe' },
-    { id: 'shipping', label: 'Glass Shipping', icon: Truck, badge: 'Delhivery' },
-    { id: 'export', label: 'Export Orders', icon: Plane, badge: 'USA/UK/UAE' },
-    { id: 'analytics', label: 'Flavor Margins', icon: BarChart3, badge: '58% Margin' },
+    { id: 'non-veg', label: 'Non-Veg', icon: Flame, badge: 'HACCP Safe' },
+    { id: 'shipping', label: 'Shipping', icon: Truck, badge: 'Delhivery' },
+    { id: 'export', label: 'Exports', icon: Plane, badge: 'USA/UK/UAE' },
+    { id: 'analytics', label: 'Margins', icon: BarChart3, badge: '58% Margin' },
+    { id: 'catalogue', label: 'Catalogue', icon: Package, badge: 'Jar Matrix' },
+    { id: 'billing', label: 'Billing', icon: FileText, badge: 'GST Khata' },
+    { id: 'marketing', label: 'Marketing', icon: Send, badge: 'Broadcast' },
   ];
 
   const currentNav = navigationItems.find(n => n.id === activeSubPage) || navigationItems[0];
@@ -293,6 +303,9 @@ export const PickleFullSuite: React.FC<{ onNotify?: (msg: string) => void; banne
           {activeSubPage === 'shipping' && <PickleShipping onNotify={onNotify} />}
           {activeSubPage === 'export' && <PickleExport onNotify={onNotify} />}
           {activeSubPage === 'analytics' && <PickleAnalytics onNotify={onNotify} />}
+          {activeSubPage === 'catalogue' && <PickleCatalogue onNotify={onNotify} />}
+          {activeSubPage === 'billing' && <PickleBilling onNotify={onNotify} />}
+          {activeSubPage === 'marketing' && <PickleMarketing onNotify={onNotify} />}
         </div>
       </main>
     </div>

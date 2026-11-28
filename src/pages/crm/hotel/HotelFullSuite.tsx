@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { 
   Building2, UserCheck, Utensils, Sparkles, FileText, 
   Globe, Landmark, Car, Moon, Package, ChevronRight, Printer,
-  Menu, X, ChevronDown
+  Menu, X, ChevronDown, BookmarkCheck, Clock, Star
 } from 'lucide-react';
 import { HotelTapeChart } from './HotelTapeChart';
 import { HotelCheckIn } from './HotelCheckIn';
@@ -15,6 +15,9 @@ import { HotelBanquets } from './HotelBanquets';
 import { HotelConcierge } from './HotelConcierge';
 import { HotelNightAudit } from './HotelNightAudit';
 import { HotelInventory } from './HotelInventory';
+import { HotelReservations } from './HotelReservations';
+import { HotelStaffShifts } from './HotelStaffShifts';
+import { HotelReviewsReports } from './HotelReviewsReports';
 
 export type HotelSubPage = 
   | 'tape-chart' 
@@ -26,14 +29,18 @@ export type HotelSubPage =
   | 'banquets' 
   | 'concierge' 
   | 'night-audit'
-  | 'inventory';
+  | 'inventory'
+  | 'reservations'
+  | 'shifts'
+  | 'reviews';
 
 export const HotelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner?: React.ReactNode; statusNotification?: React.ReactNode }> = ({ onNotify, banner, statusNotification }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const validTabs: HotelSubPage[] = [
     'tape-chart', 'check-in', 'dining-pos', 'housekeeping', 'folio-billing', 
-    'channel-manager', 'banquets', 'concierge', 'night-audit', 'inventory'
+    'channel-manager', 'banquets', 'concierge', 'night-audit', 'inventory',
+    'reservations', 'shifts', 'reviews'
   ];
   const tabFromUrl = searchParams.get('tab') as HotelSubPage;
   const activeSubPage: HotelSubPage = validTabs.includes(tabFromUrl) ? tabFromUrl : 'tape-chart';
@@ -54,6 +61,9 @@ export const HotelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
     { id: 'concierge', label: 'Cabs', icon: Car, badge: 'Airport Cabs' },
     { id: 'night-audit', label: 'Closing', icon: Moon, badge: 'Day Summary' },
     { id: 'inventory', label: 'Linen', icon: Package, badge: 'Stockroom' },
+    { id: 'reservations', label: 'Bookings', icon: BookmarkCheck, badge: 'Direct/OTA' },
+    { id: 'shifts', label: 'Roster', icon: Clock, badge: '5 Staff' },
+    { id: 'reviews', label: 'Reviews', icon: Star, badge: '4.7 ★' },
   ];
 
   const currentNav = navigationItems.find(n => n.id === activeSubPage) || navigationItems[0];
@@ -204,7 +214,7 @@ export const HotelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
             <h3 className="font-extrabold text-sm text-[#1E1B4B]">Navigation Menu</h3>
           </div>
           <span className="px-2 py-0.5 bg-[#EDE9FE] text-[#5B21B6] text-[10px] font-extrabold rounded-full border border-purple-200">
-            10 Modules
+            13 Modules
           </span>
         </div>
 
@@ -308,6 +318,9 @@ export const HotelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
           {activeSubPage === 'concierge' && <HotelConcierge onNotify={onNotify} />}
           {activeSubPage === 'night-audit' && <HotelNightAudit onNotify={onNotify} />}
           {activeSubPage === 'inventory' && <HotelInventory onNotify={onNotify} />}
+          {activeSubPage === 'reservations' && <HotelReservations onNotify={onNotify} />}
+          {activeSubPage === 'shifts' && <HotelStaffShifts onNotify={onNotify} />}
+          {activeSubPage === 'reviews' && <HotelReviewsReports onNotify={onNotify} />}
         </div>
       </main>
     </div>

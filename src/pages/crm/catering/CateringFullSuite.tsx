@@ -55,30 +55,30 @@ export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void; ban
 
   const navSections = [
     {
-      title: 'Events & Sales',
+      title: 'Sales',
       items: [
-        { id: 'events', label: 'Event Bookings', icon: Calendar, badge: '5 Booked' },
-        { id: 'menus', label: 'Menu Packages', icon: Utensils, badge: '3 Packages' },
-        { id: 'photos', label: 'Food Photos', icon: Camera, badge: 'Gallery' },
+        { id: 'events', label: 'Bookings', icon: Calendar, badge: '5 Booked' },
+        { id: 'menus', label: 'Menus', icon: Utensils, badge: '3 Packages' },
+        { id: 'photos', label: 'Gallery', icon: Camera, badge: 'Gallery' },
         { id: 'muhurtham', label: 'Calendar', icon: Moon, badge: 'Dates' },
-        { id: 'tasting', label: 'Food Tasting', icon: Sparkles, badge: '3 Sessions' },
+        { id: 'tasting', label: 'Tasting', icon: Sparkles, badge: '3 Sessions' },
       ],
     },
     {
-      title: 'Money & Financials',
+      title: 'Finance',
       items: [
         { id: 'invoices', label: 'Invoices', icon: FileText, badge: '20/50/30' },
-        { id: 'costing', label: 'Plate Costing', icon: Calculator, badge: 'Profit Engine' },
-        { id: 'expenses', label: 'Daily Expenses', icon: Receipt, badge: 'Petty Cash' },
+        { id: 'costing', label: 'Costing', icon: Calculator, badge: 'Profit Engine' },
+        { id: 'expenses', label: 'Expenses', icon: Receipt, badge: 'Petty Cash' },
         { id: 'vendors', label: 'Vendors', icon: Building2, badge: '5 Mandis' },
       ],
     },
     {
-      title: 'Kitchen & Operations',
+      title: 'Operations',
       items: [
-        { id: 'grocery', label: 'Grocery List', icon: ShoppingBag, badge: 'Auto Qty' },
+        { id: 'grocery', label: 'Groceries', icon: ShoppingBag, badge: 'Auto Qty' },
         { id: 'vessels', label: 'Vessels', icon: Truck, badge: 'Loading Sheet' },
-        { id: 'safety', label: 'Food Safety', icon: ShieldCheck, badge: 'FSSAI Pass' },
+        { id: 'safety', label: 'Safety', icon: ShieldCheck, badge: 'FSSAI Pass' },
         { id: 'vehicles', label: 'Vehicles', icon: Car, badge: '3 Vans' },
         { id: 'staff', label: 'Staff', icon: Users, badge: '7 Staff' },
       ],

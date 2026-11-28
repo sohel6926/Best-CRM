@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { 
   Flame, Package, ShoppingCart, Store, ShoppingBag, 
   Coffee, Truck, Plane, BarChart3, ChevronRight, Printer,
-  Menu, X, ChevronDown
+  Menu, X, ChevronDown, Layers, FileText, Send
 } from 'lucide-react';
 import { KaramBatches } from './KaramBatches';
 import { KaramInventory } from './KaramInventory';
@@ -14,6 +14,9 @@ import { KaramTiffinSupply } from './KaramTiffinSupply';
 import { KaramShipping } from './KaramShipping';
 import { KaramExport } from './KaramExport';
 import { KaramAnalytics } from './KaramAnalytics';
+import { KaramCatalogue } from './KaramCatalogue';
+import { KaramBilling } from './KaramBilling';
+import { KaramMarketing } from './KaramMarketing';
 
 export type KaramSubPage = 
   | 'batches' 
@@ -24,14 +27,18 @@ export type KaramSubPage =
   | 'tiffin-supply' 
   | 'shipping' 
   | 'export' 
-  | 'analytics';
+  | 'analytics'
+  | 'catalogue'
+  | 'billing'
+  | 'marketing';
 
 export const KaramFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner?: React.ReactNode; statusNotification?: React.ReactNode }> = ({ onNotify, banner, statusNotification }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const validTabs: KaramSubPage[] = [
     'batches', 'inventory', 'orders', 'wholesale', 'procurement', 
-    'tiffin-supply', 'shipping', 'export', 'analytics'
+    'tiffin-supply', 'shipping', 'export', 'analytics',
+    'catalogue', 'billing', 'marketing'
   ];
   const tabFromUrl = searchParams.get('tab') as KaramSubPage;
   const activeSubPage: KaramSubPage = validTabs.includes(tabFromUrl) ? tabFromUrl : 'batches';
@@ -42,15 +49,18 @@ export const KaramFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
   };
 
   const navigationItems = [
-    { id: 'batches', label: 'Grinding Batches', icon: Flame, badge: '4 Batches' },
-    { id: 'inventory', label: 'Packaged Stock', icon: Package, badge: '8 SKUs' },
-    { id: 'orders', label: 'Customer Orders', icon: ShoppingCart, badge: 'Live Orders' },
-    { id: 'wholesale', label: 'Supermarket Khata', icon: Store, badge: '4 Chains' },
-    { id: 'procurement', label: 'Spice Procurement', icon: ShoppingBag, badge: 'Guntur/Byadgi' },
-    { id: 'tiffin-supply', label: 'Hotel Contracts', icon: Coffee, badge: 'Weekly 125kg' },
+    { id: 'batches', label: 'Batches', icon: Flame, badge: '4 Batches' },
+    { id: 'inventory', label: 'Stock', icon: Package, badge: '8 SKUs' },
+    { id: 'orders', label: 'Orders', icon: ShoppingCart, badge: 'Live Orders' },
+    { id: 'wholesale', label: 'Wholesale', icon: Store, badge: '4 Chains' },
+    { id: 'procurement', label: 'Procurement', icon: ShoppingBag, badge: 'Guntur/Byadgi' },
+    { id: 'tiffin-supply', label: 'Contracts', icon: Coffee, badge: 'Weekly 125kg' },
     { id: 'shipping', label: 'Courier', icon: Truck, badge: 'Delhivery' },
-    { id: 'export', label: 'Export Orders', icon: Plane, badge: 'USA/UK/UAE' },
-    { id: 'analytics', label: 'Flavor Margins', icon: BarChart3, badge: '56% Margin' },
+    { id: 'export', label: 'Exports', icon: Plane, badge: 'USA/UK/UAE' },
+    { id: 'analytics', label: 'Margins', icon: BarChart3, badge: '56% Margin' },
+    { id: 'catalogue', label: 'Catalogue', icon: Layers, badge: 'SKU Matrix' },
+    { id: 'billing', label: 'Billing', icon: FileText, badge: 'GST Khata' },
+    { id: 'marketing', label: 'Marketing', icon: Send, badge: 'WhatsApp' },
   ];
 
   const currentNav = navigationItems.find(n => n.id === activeSubPage) || navigationItems[0];
@@ -293,6 +303,9 @@ export const KaramFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
           {activeSubPage === 'shipping' && <KaramShipping onNotify={onNotify} />}
           {activeSubPage === 'export' && <KaramExport onNotify={onNotify} />}
           {activeSubPage === 'analytics' && <KaramAnalytics onNotify={onNotify} />}
+          {activeSubPage === 'catalogue' && <KaramCatalogue onNotify={onNotify} />}
+          {activeSubPage === 'billing' && <KaramBilling onNotify={onNotify} />}
+          {activeSubPage === 'marketing' && <KaramMarketing onNotify={onNotify} />}
         </div>
       </main>
     </div>

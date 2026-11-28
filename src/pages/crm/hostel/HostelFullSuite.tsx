@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { 
   BedDouble, Users, CreditCard, Zap, Utensils, 
   ShieldAlert, ShieldCheck, Wrench, UserCog, ChevronRight, Printer,
-  Menu, X, ChevronDown
+  Menu, X, ChevronDown, Bell, Smartphone, BarChart3
 } from 'lucide-react';
 import { HostelRooms } from './HostelRooms';
 import { HostelResidents } from './HostelResidents';
@@ -14,6 +14,9 @@ import { HostelGatePass } from './HostelGatePass';
 import { HostelDeposits } from './HostelDeposits';
 import { HostelComplaints } from './HostelComplaints';
 import { HostelStaff } from './HostelStaff';
+import { HostelNotices } from './HostelNotices';
+import { HostelTenantPortal } from './HostelTenantPortal';
+import { HostelReports } from './HostelReports';
 
 export type HostelSubPage = 
   | 'rooms' 
@@ -24,13 +27,16 @@ export type HostelSubPage =
   | 'gate-pass' 
   | 'deposits' 
   | 'complaints' 
-  | 'staff';
+  | 'staff'
+  | 'notices'
+  | 'portal'
+  | 'reports';
 
 export const HostelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner?: React.ReactNode; statusNotification?: React.ReactNode }> = ({ onNotify, banner, statusNotification }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const validTabs: HostelSubPage[] = [
-    'rooms', 'residents', 'billing', 'power', 'mess', 'gate-pass', 'deposits', 'complaints', 'staff'
+    'rooms', 'residents', 'billing', 'power', 'mess', 'gate-pass', 'deposits', 'complaints', 'staff', 'notices', 'portal', 'reports'
   ];
   const tabFromUrl = searchParams.get('tab') as HostelSubPage;
   const activeSubPage: HostelSubPage = validTabs.includes(tabFromUrl) ? tabFromUrl : 'rooms';
@@ -44,12 +50,15 @@ export const HostelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banne
     { id: 'rooms', label: 'Rooms', icon: BedDouble, badge: '91% Full' },
     { id: 'residents', label: 'Residents', icon: Users, badge: '120 Active' },
     { id: 'billing', label: 'Rent', icon: CreditCard, badge: 'Due 5th' },
-    { id: 'power', label: 'Electricity Bills', icon: Zap, badge: '₹11/unit' },
-    { id: 'mess', label: 'Mess Menu', icon: Utensils, badge: '7 Days' },
-    { id: 'gate-pass', label: 'Gate Passes', icon: ShieldAlert, badge: '09:30 PM' },
+    { id: 'power', label: 'Electricity', icon: Zap, badge: '₹11/unit' },
+    { id: 'mess', label: 'Mess', icon: Utensils, badge: '7 Days' },
+    { id: 'gate-pass', label: 'Passes', icon: ShieldAlert, badge: '09:30 PM' },
     { id: 'deposits', label: 'Deposits', icon: ShieldCheck, badge: 'No Dues' },
     { id: 'complaints', label: 'Maintenance', icon: Wrench, badge: '2 Open' },
     { id: 'staff', label: 'Staff', icon: UserCog, badge: '5 Staff' },
+    { id: 'notices', label: 'Notices', icon: Bell, badge: 'Broadcast' },
+    { id: 'portal', label: 'Portal', icon: Smartphone, badge: 'App View' },
+    { id: 'reports', label: 'Reports', icon: BarChart3, badge: 'Analytics' },
   ];
 
   const currentNav = navigationItems.find(n => n.id === activeSubPage) || navigationItems[0];
@@ -77,7 +86,7 @@ export const HostelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banne
             onClick={() => setMobileMenuOpen(true)}
             className="text-xs font-bold text-[#5B21B6] px-3 py-2 rounded-xl border border-purple-200 bg-purple-50 cursor-pointer"
           >
-            All 9 Tools ▾
+            All 12 Tools ▾
           </button>
         </div>
 
@@ -203,7 +212,7 @@ export const HostelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banne
             <h3 className="font-extrabold text-sm text-[#1E1B4B]">Navigation Menu</h3>
           </div>
           <span className="px-2 py-0.5 bg-[#EDE9FE] text-[#5B21B6] text-[10px] font-extrabold rounded-full border border-purple-200">
-            9 Pages
+            12 Pages
           </span>
         </div>
 
@@ -299,6 +308,9 @@ export const HostelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banne
           {activeSubPage === 'deposits' && <HostelDeposits onNotify={onNotify} />}
           {activeSubPage === 'complaints' && <HostelComplaints onNotify={onNotify} />}
           {activeSubPage === 'staff' && <HostelStaff onNotify={onNotify} />}
+          {activeSubPage === 'notices' && <HostelNotices onNotify={onNotify} />}
+          {activeSubPage === 'portal' && <HostelTenantPortal onNotify={onNotify} />}
+          {activeSubPage === 'reports' && <HostelReports onNotify={onNotify} />}
         </div>
       </main>
     </div>

@@ -4,7 +4,7 @@ import {
   Utensils, Users, Calendar, Truck, Sparkles, 
   RotateCcw, Building2, MessageSquare, Package, 
   ChevronRight, Printer, Share2, CheckCircle2, ShieldCheck, Clock,
-  Menu, X, ChevronDown
+  Menu, X, ChevronDown, CreditCard, Smartphone, BarChart3
 } from 'lucide-react';
 import { LunchManifest } from './LunchManifest';
 import { LunchSubscribers } from './LunchSubscribers';
@@ -15,6 +15,10 @@ import { LunchDabbaReturn } from './LunchDabbaReturn';
 import { LunchCorporate } from './LunchCorporate';
 import { LunchFeedback } from './LunchFeedback';
 import { LunchInventory } from './LunchInventory';
+import { LunchPlans } from './LunchPlans';
+import { LunchWallet } from './LunchWallet';
+import { LunchCustomerPortal } from './LunchCustomerPortal';
+import { LunchReports } from './LunchReports';
 
 export type LunchSubPage = 
   | 'manifest' 
@@ -25,14 +29,19 @@ export type LunchSubPage =
   | 'dabba' 
   | 'corporate' 
   | 'feedback' 
-  | 'inventory';
+  | 'inventory'
+  | 'plans'
+  | 'wallet'
+  | 'portal'
+  | 'reports';
 
 export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner?: React.ReactNode; statusNotification?: React.ReactNode }> = ({ onNotify, banner, statusNotification }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const validTabs: LunchSubPage[] = [
     'manifest', 'subscribers', 'calendar', 'routes', 'menu', 
-    'dabba', 'corporate', 'feedback', 'inventory'
+    'dabba', 'corporate', 'feedback', 'inventory',
+    'plans', 'wallet', 'portal', 'reports'
   ];
   const tabFromUrl = searchParams.get('tab') as LunchSubPage;
   const activeSubPage: LunchSubPage = validTabs.includes(tabFromUrl) ? tabFromUrl : 'manifest';
@@ -43,15 +52,19 @@ export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
   };
 
   const navigationItems = [
-    { id: 'manifest', label: 'Daily Manifest', icon: Utensils, badge: '9:00 AM Lock' },
+    { id: 'manifest', label: 'Manifest', icon: Utensils, badge: '9:00 AM Lock' },
     { id: 'subscribers', label: 'Subscribers', icon: Users, badge: '112 Active' },
     { id: 'calendar', label: 'Pauses', icon: Calendar, badge: '8:30 AM Cut' },
-    { id: 'routes', label: 'Delivery Routes', icon: Truck, badge: '4 Corridors' },
-    { id: 'menu', label: 'Monthly Menu', icon: Sparkles, badge: 'Week 1 Live' },
-    { id: 'dabba', label: 'Dabba Returns', icon: RotateCcw, badge: '97% Return' },
+    { id: 'routes', label: 'Routes', icon: Truck, badge: '4 Corridors' },
+    { id: 'menu', label: 'Menu', icon: Sparkles, badge: 'Week 1 Live' },
+    { id: 'dabba', label: 'Returns', icon: RotateCcw, badge: '97% Return' },
     { id: 'corporate', label: 'Corporate', icon: Building2, badge: '4 Tech Hubs' },
-    { id: 'feedback', label: 'Customer Ratings', icon: MessageSquare, badge: '4.85 ★' },
+    { id: 'feedback', label: 'Ratings', icon: MessageSquare, badge: '4.85 ★' },
     { id: 'inventory', label: 'Pantry', icon: Package, badge: 'Begum Bazar' },
+    { id: 'plans', label: 'Plans', icon: Calendar, badge: 'Packages' },
+    { id: 'wallet', label: 'Wallet', icon: CreditCard, badge: 'Prepaid' },
+    { id: 'portal', label: 'Portal', icon: Smartphone, badge: 'App View' },
+    { id: 'reports', label: 'Reports', icon: BarChart3, badge: 'Analytics' },
   ];
 
   const currentNav = navigationItems.find(n => n.id === activeSubPage) || navigationItems[0];
@@ -79,7 +92,7 @@ export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
             onClick={() => setMobileMenuOpen(true)}
             className="text-xs font-bold text-[#5B21B6] px-3 py-2 rounded-xl border border-purple-200 bg-purple-50 cursor-pointer"
           >
-            All 9 Tools ▾
+            All 13 Tools ▾
           </button>
         </div>
 
@@ -191,7 +204,7 @@ export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
             <h3 className="font-extrabold text-sm text-[#1E1B4B]">Navigation Menu</h3>
           </div>
           <span className="px-2 py-0.5 bg-[#EDE9FE] text-[#5B21B6] text-[10px] font-extrabold rounded-full border border-purple-200">
-            9 Modules
+            13 Modules
           </span>
         </div>
 
@@ -300,6 +313,10 @@ export const LunchFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
         {activeSubPage === 'corporate' && <LunchCorporate onNotify={onNotify} />}
         {activeSubPage === 'feedback' && <LunchFeedback onNotify={onNotify} />}
         {activeSubPage === 'inventory' && <LunchInventory onNotify={onNotify} />}
+        {activeSubPage === 'plans' && <LunchPlans onNotify={onNotify} />}
+        {activeSubPage === 'wallet' && <LunchWallet onNotify={onNotify} />}
+        {activeSubPage === 'portal' && <LunchCustomerPortal onNotify={onNotify} />}
+        {activeSubPage === 'reports' && <LunchReports onNotify={onNotify} />}
       </main>
     </div>
   );
