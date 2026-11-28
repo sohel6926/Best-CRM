@@ -44,16 +44,16 @@ export const HotelFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
   };
 
   const navigationItems = [
-    { id: 'tape-chart', label: 'Tape Chart', icon: Building2, badge: '85% Full' },
-    { id: 'check-in', label: 'Check-In & KYC', icon: UserCheck, badge: 'Form C' },
-    { id: 'dining-pos', label: 'Dining & KOT', icon: Utensils, badge: 'Live Orders' },
+    { id: 'tape-chart', label: 'Room Calendar', icon: Building2, badge: '85% Full' },
+    { id: 'check-in', label: 'Guest Check-In', icon: UserCheck, badge: 'Verified' },
+    { id: 'dining-pos', label: 'Restaurant Orders', icon: Utensils, badge: 'Live Orders' },
     { id: 'housekeeping', label: 'Housekeeping', icon: Sparkles, badge: 'Clean Desk' },
-    { id: 'folio-billing', label: 'Folio Billing', icon: FileText, badge: 'Split B2B' },
-    { id: 'channel-manager', label: 'OTA Rates', icon: Globe, badge: 'MMT/Agoda' },
+    { id: 'folio-billing', label: 'Guest Billing', icon: FileText, badge: 'Split Bill' },
+    { id: 'channel-manager', label: 'Online Rates', icon: Globe, badge: 'OTAs' },
     { id: 'banquets', label: 'Banquets', icon: Landmark, badge: '3 Halls' },
-    { id: 'concierge', label: 'Concierge & Cabs', icon: Car, badge: 'Airport Cabs' },
-    { id: 'night-audit', label: 'Night Audit', icon: Moon, badge: 'Flash Close' },
-    { id: 'inventory', label: 'Linen & Stock', icon: Package, badge: 'Stockroom' },
+    { id: 'concierge', label: 'Cab Booking', icon: Car, badge: 'Airport Cabs' },
+    { id: 'night-audit', label: 'Daily Closing', icon: Moon, badge: 'Day Summary' },
+    { id: 'inventory', label: 'Linen & Supplies', icon: Package, badge: 'Stockroom' },
   ];
 
   const currentNav = navigationItems.find(n => n.id === activeSubPage) || navigationItems[0];

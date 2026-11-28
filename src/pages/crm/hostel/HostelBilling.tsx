@@ -105,8 +105,8 @@ export const HostelBilling: React.FC<{ onNotify?: (msg: string) => void }> = ({ 
             <CreditCard className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">Monthly Rent & Automated Fee Collection</h2>
-            <p className="text-sm text-gray-500">Auto-generate 1st of month rent invoices (Room + Mess + Power Meter + Amenities) with UPI QR codes</p>
+            <h2 className="text-xl font-bold text-gray-900">Monthly Rent & Bill Collection</h2>
+            <p className="text-sm text-gray-500">Generate monthly rent bills (Room, Food, Electricity & WiFi) with easy UPI QR codes</p>
           </div>
         </div>
 

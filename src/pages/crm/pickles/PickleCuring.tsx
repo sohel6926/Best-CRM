@@ -158,8 +158,8 @@ export const PickleCuring: React.FC<{ onNotify?: (msg: string) => void }> = ({ o
             <Layers className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">Ceramic Bharani (Jaadi) Curing & Fermentation Lifecycle</h2>
-            <p className="text-sm text-gray-500">Traditional porcelain martaban aging, 30-day spice infusion, natural pH testing & oil shield monitoring</p>
+            <h2 className="text-xl font-bold text-gray-900">Pickle Aging & Jaadi (Jar) Tracker</h2>
+            <p className="text-sm text-gray-500">Track 30-day pickle aging in ceramic jars, oil levels, and freshness checks</p>
           </div>
         </div>
 
@@ -168,7 +168,7 @@ export const PickleCuring: React.FC<{ onNotify?: (msg: string) => void }> = ({ o
           onClick={() => setAddModalOpen(true)}
           className="px-4 py-2 bg-[#5B21B6] hover:bg-[#4C1D95] text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-sm cursor-pointer"
         >
-          <Plus className="w-4 h-4" /> Start New Bharani Curing
+          <Plus className="w-4 h-4" /> Start New Pickle Jar Curing
         </button>
       </div>
 

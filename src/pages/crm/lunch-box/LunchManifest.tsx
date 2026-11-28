@@ -113,9 +113,9 @@ export const LunchManifest: React.FC<{ onNotify?: (msg: string) => void }> = ({ 
             </span>
             <span className="text-xs text-gray-500 font-medium">Cutoff: {lockedAt}</span>
           </div>
-          <h2 className="text-xl font-extrabold text-[#1E1B4B] mt-1">Daily Kitchen Production Manifest</h2>
+          <h2 className="text-xl font-extrabold text-[#1E1B4B] mt-1">Daily Lunch Cooking & Packing Summary</h2>
           <p className="text-xs text-[#64748B]">
-            Automated meal splits, roti counters, and chef portioning sheets for lunch delivery corridors.
+            Total lunch boxes, fresh rotis, and rice quantities to prepare and pack for today's deliveries.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -184,7 +184,7 @@ export const LunchManifest: React.FC<{ onNotify?: (msg: string) => void }> = ({ 
       <div className="bg-white rounded-2xl border border-[#E2E8F0] p-5 shadow-xs space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <h3 className="font-extrabold text-sm text-[#1E1B4B]">Live Station-Wise Prep & Bagging Status</h3>
+            <h3 className="font-extrabold text-sm text-[#1E1B4B]">Live Packing & Cooking Status</h3>
             <span className="text-[10px] bg-purple-100 text-[#5B21B6] px-2 py-0.5 rounded-full font-bold">
               {categories.length} Tiers
             </span>

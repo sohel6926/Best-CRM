@@ -77,8 +77,8 @@ export const HotelFolioBilling: React.FC<{ onNotify?: (msg: string) => void }> =
             <FileText className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">Master Folio Billing & Corporate B2B GST Invoices</h2>
-            <p className="text-sm text-gray-500">Consolidate room tariff, dining, laundry & cabs; split corporate company bills for GST input credit</p>
+            <h2 className="text-xl font-bold text-gray-900">Guest Bills & Company Invoices</h2>
+            <p className="text-sm text-gray-500">Combine room rent, restaurant orders, laundry and cabs into one clean bill. Split bills for company expenses.</p>
           </div>
         </div>
 
@@ -86,7 +86,7 @@ export const HotelFolioBilling: React.FC<{ onNotify?: (msg: string) => void }> =
           onClick={() => onNotify?.("Corporate Split Folio (Company vs Guest Extras) Generated!")}
           className="px-4 py-2 bg-[#5B21B6] hover:bg-[#4C1D95] text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-sm"
         >
-          <Split className="w-4 h-4" /> Split Corporate Folio
+          <Split className="w-4 h-4" /> Split Company Bill
         </button>
       </div>
 
@@ -96,7 +96,7 @@ export const HotelFolioBilling: React.FC<{ onNotify?: (msg: string) => void }> =
         <div className="lg:col-span-2 space-y-4">
           <div className="bg-white rounded-2xl p-6 border border-purple-100 shadow-sm space-y-4">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
-              Active Room Folios Awaiting Checkout
+              Active Guest Bills Awaiting Checkout
             </h3>
 
             <div className="space-y-3">

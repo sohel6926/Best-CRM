@@ -167,8 +167,8 @@ export const KaramBatches: React.FC<{ onNotify?: (msg: string) => void }> = ({ o
             <Flame className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">Spice Roasting, Milling & Moisture Quality Log</h2>
-            <p className="text-sm text-gray-500">Formulation ratios, slow fire roasting temps, moisture % quality check (&lt; 3.0%), and milling mesh coarseness</p>
+            <h2 className="text-xl font-bold text-gray-900">Spice Roasting, Grinding & Quality Log</h2>
+            <p className="text-sm text-gray-500">Track roasting temperatures, grinding texture, and quality standards for every batch</p>
           </div>
         </div>
 
@@ -177,7 +177,7 @@ export const KaramBatches: React.FC<{ onNotify?: (msg: string) => void }> = ({ o
             onClick={() => setIsAddOpen(true)}
             className="px-4 py-2 bg-[#5B21B6] hover:bg-[#4C1D95] text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-sm cursor-pointer"
           >
-            <Plus className="w-4 h-4" /> Start New Roasting Batch
+            <Plus className="w-4 h-4" /> Start New Grinding Batch
           </button>
           <button 
             type="button"

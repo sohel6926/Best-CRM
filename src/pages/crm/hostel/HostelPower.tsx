@@ -78,8 +78,8 @@ export const HostelPower: React.FC<{ onNotify?: (msg: string) => void }> = ({ on
             <Zap className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">Electricity Sub-Meter & Roommate Split Engine</h2>
-            <p className="text-sm text-gray-500">Record individual room meter readings, auto-split equally among roommates, and add directly to monthly rent bills</p>
+            <h2 className="text-xl font-bold text-gray-900">Electricity Meter & Bill Splitter</h2>
+            <p className="text-sm text-gray-500">Enter room meter units, split the bill equally among roommates, and add directly to their monthly rent</p>
           </div>
         </div>
 

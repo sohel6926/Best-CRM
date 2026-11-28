@@ -54,7 +54,7 @@ export function CrmWorkspacePage({ fixedCrmId }: { fixedCrmId?: string } = {}) {
           </div>
           <div>
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#DDD6FE]">
-              Industry Workflows & Business OS
+              Daily Business Management System
             </span>
             <h1 className="text-xl sm:text-2xl font-extrabold lg:text-3xl text-white drop-shadow-xs">{currentCrm.name}</h1>
             <p className="text-xs sm:text-sm text-[#E2E8F0] mt-0.5">{currentCrm.shortDesc}</p>

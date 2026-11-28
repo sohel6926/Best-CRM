@@ -92,8 +92,8 @@ export const CateringGrocery: React.FC<{ onNotify?: (msg: string) => void }> = (
               <ShoppingBag className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900">Kirana, Mandi & Raw Material Estimator</h2>
-              <p className="text-sm text-gray-500">Automate raw rations based on total guest plates, buffer %, and mandi market rates</p>
+              <h2 className="text-xl font-bold text-gray-900">Grocery & Ingredients Calculator</h2>
+              <p className="text-sm text-gray-500">Calculate exact grocery quantities needed based on guest plates and market prices</p>
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@ export const CateringGrocery: React.FC<{ onNotify?: (msg: string) => void }> = (
           </div>
 
           <div>
-            <label className="text-[10px] uppercase font-bold text-gray-500 block">Safety Buffer %</label>
+            <label className="text-[10px] uppercase font-bold text-gray-500 block">Extra Backup Food %</label>
             <select
               value={bufferPercent}
               onChange={e => setBufferPercent(Number(e.target.value))}
@@ -145,9 +145,9 @@ export const CateringGrocery: React.FC<{ onNotify?: (msg: string) => void }> = (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm flex items-center justify-between">
           <div>
-            <div className="text-xs text-gray-500 font-medium">Estimated Raw Kirana Total</div>
+            <div className="text-xs text-gray-500 font-medium">Estimated Grocery Total</div>
             <div className="text-2xl font-bold text-purple-900 mt-1">₹{totalGroceryExpense.toLocaleString()}</div>
-            <div className="text-[11px] text-gray-500 mt-0.5">₹{Math.round(totalGroceryExpense / (eventGuests || 1))} / plate raw ration</div>
+            <div className="text-[11px] text-gray-500 mt-0.5">₹{Math.round(totalGroceryExpense / (eventGuests || 1))} / plate ingredients</div>
           </div>
           <div className="p-3 bg-purple-50 text-purple-700 rounded-xl">
             <TrendingUp className="w-5 h-5" />
@@ -156,9 +156,9 @@ export const CateringGrocery: React.FC<{ onNotify?: (msg: string) => void }> = (
 
         <div className="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm flex items-center justify-between">
           <div>
-            <div className="text-xs text-gray-500 font-medium">Effective Cooked Target</div>
+            <div className="text-xs text-gray-500 font-medium">Total Plates Planned</div>
             <div className="text-2xl font-bold text-gray-900 mt-1">{Math.round(effectivePlateCount)} <span className="text-sm font-normal text-gray-500">plates</span></div>
-            <div className="text-[11px] text-emerald-600 mt-0.5">Includes {bufferPercent}% backup buffer</div>
+            <div className="text-[11px] text-emerald-600 mt-0.5">Includes {bufferPercent}% extra backup food</div>
           </div>
           <div className="p-3 bg-emerald-50 text-emerald-700 rounded-xl">
             <Layers className="w-5 h-5" />
@@ -167,7 +167,7 @@ export const CateringGrocery: React.FC<{ onNotify?: (msg: string) => void }> = (
 
         <div className="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm flex items-center justify-between">
           <div>
-            <div className="text-xs text-gray-500 font-medium">Procurement Status</div>
+            <div className="text-xs text-gray-500 font-medium">Grocery Purchased Status</div>
             <div className="text-2xl font-bold text-gray-900 mt-1">{purchasedCount} / {ingredients.length}</div>
             <div className="text-[11px] text-purple-600 mt-0.5">{Math.round((purchasedCount / ingredients.length) * 100)}% packed & verified</div>
           </div>

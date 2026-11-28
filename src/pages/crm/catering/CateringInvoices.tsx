@@ -100,35 +100,35 @@ export const CateringInvoices: React.FC<{ onNotify?: (msg: string) => void }> = 
             <FileText className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">Milestone Billing & GST Invoices</h2>
-            <p className="text-sm text-gray-500">Enforce standard catering milestone stages: 20% booking, 50% mandi prep, 30% event day balance</p>
+            <h2 className="text-xl font-bold text-gray-900">Payment Stages & Invoices</h2>
+            <p className="text-sm text-gray-500">Standard catering payments: 20% Advance, 50% Before Event, 30% Final Balance</p>
           </div>
         </div>
 
         <button 
-          onClick={() => onNotify?.("Generating new milestone billing schedule...")}
+          onClick={() => onNotify?.("Generating new payment schedule...")}
           className="px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded-xl text-xs font-semibold shadow-sm"
         >
-          + Create Milestone Schedule
+          + Create Payment Schedule
         </button>
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <div className="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm">
-          <div className="text-xs text-gray-500 font-medium">Total Milestone Advances Cleared</div>
+          <div className="text-xs text-gray-500 font-medium">Total Advance Received</div>
           <div className="text-2xl font-bold text-emerald-700 mt-1">₹{totalCollected.toLocaleString()}</div>
           <div className="text-[11px] text-emerald-600 mt-0.5 font-medium">Safe in bank account</div>
         </div>
 
         <div className="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm">
-          <div className="text-xs text-gray-500 font-medium">Pending Milestone Collections</div>
+          <div className="text-xs text-gray-500 font-medium">Pending Payments Due</div>
           <div className="text-2xl font-bold text-amber-700 mt-1">₹{totalPending.toLocaleString()}</div>
-          <div className="text-[11px] text-amber-600 mt-0.5 font-medium">Due prior to final food service</div>
+          <div className="text-[11px] text-amber-600 mt-0.5 font-medium">Due before event day</div>
         </div>
 
         <div className="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm">
-          <div className="text-xs text-gray-500 font-medium">Catering GST Compliance</div>
+          <div className="text-xs text-gray-500 font-medium">Catering GST Tax Rate</div>
           <div className="text-2xl font-bold text-purple-900 mt-1">5% / 18%</div>
           <div className="text-[11px] text-purple-600 mt-0.5">HSN Code 9963 Outdoor Catering</div>
         </div>

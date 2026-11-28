@@ -91,8 +91,8 @@ export const HostelGatePass: React.FC<{ onNotify?: (msg: string) => void }> = ({
             <ShieldAlert className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">Biometric Gate Pass & Night Curfew Monitor</h2>
-            <p className="text-sm text-gray-500">Night curfew enforcement (09:30 PM deadline), parent SMS approval workflow & leave register</p>
+            <h2 className="text-xl font-bold text-gray-900">Hostel Gate Pass & Night Out Register</h2>
+            <p className="text-sm text-gray-500">Track student entry and exit timings, night leave approvals, and parent notifications</p>
           </div>
         </div>
 

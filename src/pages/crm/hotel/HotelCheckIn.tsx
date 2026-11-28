@@ -165,8 +165,8 @@ export const HotelCheckIn: React.FC<{ onNotify?: (msg: string) => void }> = ({ o
             <UserCheck className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">Express Check-In & Digital KYC Vault</h2>
-            <p className="text-sm text-gray-500">60-second tablet check-in, digital guest signatures, passport/Aadhaar capture, and Form C police verification</p>
+            <h2 className="text-xl font-bold text-gray-900">Guest Check-In & ID Verification</h2>
+            <p className="text-sm text-gray-500">Fast guest check-in, Aadhaar/Passport ID records, room allocation, and digital signatures</p>
           </div>
         </div>
 
@@ -175,7 +175,7 @@ export const HotelCheckIn: React.FC<{ onNotify?: (msg: string) => void }> = ({ o
           onClick={() => setAddModalOpen(true)}
           className="px-4 py-2 bg-[#5B21B6] hover:bg-[#4C1D95] text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-sm cursor-pointer"
         >
-          <Plus className="w-4 h-4" /> Express 60s Check-In
+          <Plus className="w-4 h-4" /> Quick Check-In
         </button>
       </div>
 
@@ -183,7 +183,7 @@ export const HotelCheckIn: React.FC<{ onNotify?: (msg: string) => void }> = ({ o
       <div className="bg-white rounded-2xl p-6 border border-purple-100 shadow-sm space-y-4">
         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 pb-3 border-b border-purple-50">
           <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
-            Registered In-House Guests ({guests.length})
+            Current Staying Guests ({guests.length})
           </h3>
 
           <div className="relative">

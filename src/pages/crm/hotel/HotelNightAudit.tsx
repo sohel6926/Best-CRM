@@ -34,8 +34,8 @@ export const HotelNightAudit: React.FC<{ onNotify?: (msg: string) => void }> = (
             <Moon className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">Night Audit & Daily Flash Financials</h2>
-            <p className="text-sm text-gray-500">Midnight automated room tariff rollover, cashier drawer reconciliation, RevPAR, ADR and tax reports</p>
+            <h2 className="text-xl font-bold text-gray-900">Day-End Closing & Daily Earnings Report</h2>
+            <p className="text-sm text-gray-500">Daily cash collection summary, room earnings, average room rates, and tax totals</p>
           </div>
         </div>
 
@@ -45,7 +45,7 @@ export const HotelNightAudit: React.FC<{ onNotify?: (msg: string) => void }> = (
               onClick={runMidnightRollover}
               className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm"
             >
-              <RefreshCw className="w-4 h-4" /> Run 12:00 AM Night Audit
+              <RefreshCw className="w-4 h-4" /> Close Day & Generate Report
             </button>
           ) : (
             <span className="px-3 py-1.5 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-xl flex items-center gap-1">
@@ -57,7 +57,7 @@ export const HotelNightAudit: React.FC<{ onNotify?: (msg: string) => void }> = (
             onClick={() => onNotify?.("Manager Daily Flash Revenue Summary Printed")}
             className="px-4 py-2 bg-purple-50 hover:bg-purple-100 text-[#5B21B6] border border-purple-200 rounded-xl text-xs font-bold flex items-center gap-1.5"
           >
-            <Printer className="w-4 h-4" /> Print Flash Report
+            <Printer className="w-4 h-4" /> Print Daily Summary
           </button>
         </div>
       </div>

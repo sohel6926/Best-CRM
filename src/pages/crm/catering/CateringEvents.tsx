@@ -202,8 +202,8 @@ export function CateringEvents({ onNotify }: { onNotify: (msg: string) => void }
       {/* Action Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-xl font-bold text-[#1E1B4B]">Events & Muhurtham Schedule</h2>
-          <p className="text-xs text-[#64748B]">Manage wedding contracts, guest plate counts, multi-meal timelines and venues.</p>
+          <h2 className="text-xl font-bold text-[#1E1B4B]">Event Bookings & Schedule</h2>
+          <p className="text-xs text-[#64748B]">Manage client bookings, guest plates, meal timings, and venue details.</p>
         </div>
 
         <div className="flex items-center gap-2">

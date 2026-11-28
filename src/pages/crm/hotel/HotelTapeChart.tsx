@@ -9,7 +9,7 @@ interface RoomSlot {
   type: 'Executive Suite' | 'Deluxe AC' | 'Premium Balcony' | 'Standard Double';
   floor: string;
   ratePerNight: number;
-  status: 'Occupied' | 'Confirmed' | 'Turnover / Dirty' | 'Maintenance';
+  status: 'Occupied' | 'Confirmed' | 'Cleaning in Progress' | 'Maintenance';
   guestName?: string;
   checkInDate?: string;
   checkOutDate?: string;
@@ -23,7 +23,7 @@ export const HotelTapeChart: React.FC<{ onNotify?: (msg: string) => void }> = ({
     { roomNo: '101', type: 'Executive Suite', floor: '1st Floor', ratePerNight: 5500, status: 'Occupied', guestName: 'Dr. Vikramaditya Varma', checkInDate: '24 Nov', checkOutDate: '28 Nov' },
     { roomNo: '102', type: 'Executive Suite', floor: '1st Floor', ratePerNight: 5500, status: 'Confirmed', guestName: 'Ananya Deshmukh (MakeMyTrip)', checkInDate: 'Tonight 06:00 PM', checkOutDate: '29 Nov' },
     { roomNo: '103', type: 'Deluxe AC', floor: '1st Floor', ratePerNight: 3800, status: 'Occupied', guestName: 'Sanjay & Sunita Singhal', checkInDate: '25 Nov', checkOutDate: '27 Nov' },
-    { roomNo: '104', type: 'Deluxe AC', floor: '1st Floor', ratePerNight: 3800, status: 'Turnover / Dirty', guestName: 'Turnover Maid: Geeta Bai', checkInDate: 'Checked out 11 AM', checkOutDate: 'Ready by 2 PM' },
+    { roomNo: '104', type: 'Deluxe AC', floor: '1st Floor', ratePerNight: 3800, status: 'Cleaning in Progress', guestName: 'Housekeeping: Geeta Bai', checkInDate: 'Checked out 11 AM', checkOutDate: 'Ready by 2 PM' },
     { roomNo: '201', type: 'Premium Balcony', floor: '2nd Floor', ratePerNight: 4600, status: 'Occupied', guestName: 'Capt. Rajesh Narayanan', checkInDate: '23 Nov', checkOutDate: '30 Nov' },
     { roomNo: '202', type: 'Premium Balcony', floor: '2nd Floor', ratePerNight: 4600, status: 'Confirmed', guestName: 'Rohan Mehra (Booking.com)', checkInDate: 'Tonight 08:00 PM', checkOutDate: '28 Nov' },
     { roomNo: '203', type: 'Standard Double', floor: '2nd Floor', ratePerNight: 2800, status: 'Occupied', guestName: 'Kishore Kumar (Corporate TCS)', checkInDate: '26 Nov', checkOutDate: '28 Nov' },
@@ -58,13 +58,13 @@ export const HotelTapeChart: React.FC<{ onNotify?: (msg: string) => void }> = ({
         </div>
 
         <div className="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm">
-          <div className="text-xs text-gray-500 font-medium">Average Daily Rate (ADR)</div>
+          <div className="text-xs text-gray-500 font-medium">Average Room Price</div>
           <div className="text-2xl font-bold text-gray-900 mt-1">₹4,175</div>
-          <div className="text-[11px] text-gray-500 mt-0.5">RevPAR: ₹3,507 / room</div>
+          <div className="text-[11px] text-gray-500 mt-0.5">Average earnings per room</div>
         </div>
 
         <div className="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm">
-          <div className="text-xs text-gray-500 font-medium">Dirty / Turnover Rooms</div>
+          <div className="text-xs text-gray-500 font-medium">Rooms Being Cleaned</div>
           <div className="text-2xl font-bold text-amber-600 mt-1">1 Room</div>
           <div className="text-[11px] text-amber-700 mt-0.5">Housekeeping in progress</div>
         </div>
@@ -111,7 +111,7 @@ export const HotelTapeChart: React.FC<{ onNotify?: (msg: string) => void }> = ({
             <span className="w-2.5 h-2.5 rounded-full bg-blue-500" /> Confirmed Pre-Book
           </span>
           <span className="flex items-center gap-1.5 text-gray-600 font-medium">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500" /> Turnover / Cleaning
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500" /> Cleaning
           </span>
           <span className="flex items-center gap-1.5 text-gray-600 font-medium">
             <span className="w-2.5 h-2.5 rounded-full bg-rose-500" /> Maintenance
@@ -126,7 +126,7 @@ export const HotelTapeChart: React.FC<{ onNotify?: (msg: string) => void }> = ({
         </div>
       </div>
 
-      {/* Visual Tape Chart Matrix */}
+      {/* Visual Room Grid Matrix */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {filtered.map(room => (
           <div key={room.roomNo} className="bg-white rounded-2xl border border-purple-100 shadow-sm p-5 space-y-4 hover:border-purple-300 transition-all">
@@ -137,7 +137,7 @@ export const HotelTapeChart: React.FC<{ onNotify?: (msg: string) => void }> = ({
                   <span className={`w-2 h-2 rounded-full ${
                     room.status === 'Occupied' ? 'bg-emerald-500' :
                     room.status === 'Confirmed' ? 'bg-blue-500' :
-                    room.status === 'Turnover / Dirty' ? 'bg-amber-500' : 'bg-rose-500'
+                    room.status === 'Cleaning in Progress' ? 'bg-amber-500' : 'bg-rose-500'
                   }`} />
                 </div>
                 <div className="text-xs text-gray-400 mt-0.5">{room.type} • {room.floor}</div>
@@ -153,7 +153,7 @@ export const HotelTapeChart: React.FC<{ onNotify?: (msg: string) => void }> = ({
             <div className={`p-3.5 rounded-xl border space-y-1.5 ${
               room.status === 'Occupied' ? 'bg-emerald-50/50 border-emerald-200 text-emerald-950' :
               room.status === 'Confirmed' ? 'bg-blue-50/50 border-blue-200 text-blue-950' :
-              room.status === 'Turnover / Dirty' ? 'bg-amber-50/50 border-amber-200 text-amber-950' :
+              room.status === 'Cleaning in Progress' ? 'bg-amber-50/50 border-amber-200 text-amber-950' :
               'bg-rose-50/50 border-rose-200 text-rose-950'
             }`}>
               <div className="text-xs font-bold truncate">{room.guestName}</div>
@@ -167,7 +167,7 @@ export const HotelTapeChart: React.FC<{ onNotify?: (msg: string) => void }> = ({
               <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                 room.status === 'Occupied' ? 'bg-emerald-100 text-emerald-800' :
                 room.status === 'Confirmed' ? 'bg-blue-100 text-blue-800' :
-                room.status === 'Turnover / Dirty' ? 'bg-amber-100 text-amber-800' :
+                room.status === 'Cleaning in Progress' ? 'bg-amber-100 text-amber-800' :
                 'bg-rose-100 text-rose-800'
               }`}>
                 {room.status}
