@@ -67,7 +67,7 @@ export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void; ban
     {
       title: 'Money & Financials',
       items: [
-        { id: 'invoices', label: 'Invoices & GST', icon: FileText, badge: '20/50/30' },
+        { id: 'invoices', label: 'Invoices', icon: FileText, badge: '20/50/30' },
         { id: 'costing', label: 'Plate Costing', icon: Calculator, badge: 'Profit Engine' },
         { id: 'expenses', label: 'Daily Expenses', icon: Receipt, badge: 'Petty Cash' },
         { id: 'vendors', label: 'Vendors & Mandi', icon: Building2, badge: '5 Mandis' },
@@ -77,10 +77,10 @@ export const CateringFullSuite: React.FC<{ onNotify?: (msg: string) => void; ban
       title: 'Kitchen & Operations',
       items: [
         { id: 'grocery', label: 'Grocery List', icon: ShoppingBag, badge: 'Auto Qty' },
-        { id: 'vessels', label: 'Vessels & Degs', icon: Truck, badge: 'Loading Sheet' },
+        { id: 'vessels', label: 'Vessels', icon: Truck, badge: 'Loading Sheet' },
         { id: 'safety', label: 'Food Safety', icon: ShieldCheck, badge: 'FSSAI Pass' },
         { id: 'vehicles', label: 'Vehicles', icon: Car, badge: '3 Vans' },
-        { id: 'staff', label: 'Staff & Cooks', icon: Users, badge: '7 Staff' },
+        { id: 'staff', label: 'Staff', icon: Users, badge: '7 Staff' },
       ],
     },
   ];

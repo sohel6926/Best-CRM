@@ -48,7 +48,7 @@ export const KaramFullSuite: React.FC<{ onNotify?: (msg: string) => void; banner
     { id: 'wholesale', label: 'Supermarket Khata', icon: Store, badge: '4 Chains' },
     { id: 'procurement', label: 'Spice Procurement', icon: ShoppingBag, badge: 'Guntur/Byadgi' },
     { id: 'tiffin-supply', label: 'Hotel Contracts', icon: Coffee, badge: 'Weekly 125kg' },
-    { id: 'shipping', label: 'Courier & AWB', icon: Truck, badge: 'Delhivery' },
+    { id: 'shipping', label: 'Courier', icon: Truck, badge: 'Delhivery' },
     { id: 'export', label: 'Export Orders', icon: Plane, badge: 'USA/UK/UAE' },
     { id: 'analytics', label: 'Flavor Margins', icon: BarChart3, badge: '56% Margin' },
   ];
